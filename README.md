@@ -11,6 +11,7 @@ Se han completado renovaciones completas en **spotVibe**, transformando de un te
 - Tipografía mejorada con jerarquía clara
 - Espaciado y ritmo visual consistente
 - Componentes reutilizables (cards, botones, etc.)
+- **Animaciones y efectos visuales** para mayor interactividad
 
 ### 2. **Responsive e Mobile-First**
 - Optimizado para dispositivos móviles (480px+)
@@ -104,11 +105,12 @@ spotVibe/
 ├── tours.html          (Tours - REDISEÑADA)
 ├── contact.html        (Contacto - REDISEÑADA)
 ├── css/
-│   ├── style.css       (NUEVO - Estilos principales modernos)
-│   ├── template-*.css  (Antiguos - mantener como referencia)
+│   ├── style.css           (NUEVO - Estilos principales modernos)
+│   ├── animations.css      (NUEVO - Animaciones y efectos)
+│   ├── template-*.css      (Antiguos - mantener como referencia)
 ├── js/
-│   ├── restaurantes.js (Mantenido - datos de restaurantes)
-│   ├── template*.js    (Antiguos - no necesarios)
+│   ├── restaurantes.js     (Mantenido - datos de restaurantes)
+│   ├── template*.js        (Antiguos - no necesarios)
 ├── img/                (Imágenes existentes)
 └── fonts/              (Fuentes locales)
 ```
@@ -204,6 +206,79 @@ Para revertir, simplemente restaura los archivos `.bak`.
 6. Integración con Google Analytics
 7. SEO mejorado
 8. PWA (Progressive Web App)
+
+## ✨ Animaciones y Efectos Visuales
+
+### Archivo Principal: `css/animations.css`
+
+El sitio incluye animaciones profesionales y efectos visuales para mejorar la experiencia del usuario:
+
+#### **Animaciones de Scroll**
+- **fadeInUp**: Elementos aparecen con fade y movimiento hacia arriba
+- **Stagger Effect**: Tarjetas aparecen secuencialmente con retraso
+
+```html
+<div class="card fade-in">
+  <!-- Las tarjetas se animan al cargar la página -->
+</div>
+```
+
+#### **Efectos Hover**
+- **Escalado de Imagen**: Las imágenes de tarjetas se amplían suavemente al pasar el ratón
+- **Active States**: Enlaces y botones tienen estados visuales claros
+- **Enfoque Pulse**: Los campos de formulario tienen un efecto de pulso sutil
+
+#### **Animaciones de Texto**
+- **slideInDown**: Encabezados principales descienden suavemente
+- **slideInUp**: Subtítulos ascienden con fade
+- **Text Appear**: Párrafos aparecen con transición
+
+#### **Efectos Especiales**
+- **Scroll Indicator**: Flecha animada en el hero banner
+- **Badge**: Etiquetas con estilos visuales
+- **Loading Skeleton**: Efecto de carga shimmer
+- **Tooltip**: Información flotante con animación
+- **Pulse Effect**: Efecto de pulso para elementos destacados
+
+#### **Transiciones de Formulario**
+- **Focus Animation**: Los campos de entrada tienen animación de enfoque con pulso de color
+- **Form Validation**: Estados visuales claros para validación
+
+#### **Gradientes y Patrones**
+- **Fondo Gradiente**: El hero usa gradientes suaves
+- **Patrón Geométrico**: Patrones de puntos animados
+- **Overlay Effect**: Superposición oscura interactiva
+
+### Clases Disponibles para Animaciones
+
+```html
+<!-- Fade In Animation -->
+<div class="fade-in">Contenido que aparece con fade</div>
+
+<!-- Badges y Etiquetas -->
+<span class="badge">Destacado</span>
+<span class="badge badge-secondary">Secundario</span>
+<span class="badge badge-success">Éxito</span>
+
+<!-- Elementos con Pulse -->
+<button class="btn pulse">Botón destacado</button>
+
+<!-- Tooltip -->
+<span class="tooltip-trigger">
+  Información
+  <div class="tooltip">Detalles</div>
+</span>
+```
+
+### Respeto por Preferencias de Movimiento
+
+El CSS respeta la configuración `prefers-reduced-motion` del usuario, deshabilitando animaciones para usuarios que prefieren movimiento reducido.
+
+```css
+@media (prefers-reduced-motion: reduce) {
+  /* Todas las animaciones se desactivan suavemente */
+}
+```
 
 ## 🛠️ Personalización
 
