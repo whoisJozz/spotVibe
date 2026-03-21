@@ -81,9 +81,54 @@ const restaurantes = {
   },
 };
 
-// Función para calcular distancia entre dos puntos
+// Función para calcular distancia entre dos puntos usando Haversine (en km)
 function calcularDistancia(lat1, lon1, lat2, lon2) {
-  return Math.sqrt(Math.pow(lat2 - lat1, 2) + Math.pow(lon2 - lon1, 2));
+  const R = 6371; // Radio de la Tierra en km
+  const dLat = (lat2 - lat1) * Math.PI / 180;
+  const dLon = (lon2 - lon1) * Math.PI / 180;
+  const a = Math.sin(dLat / 2) * Math.sin(dLat / 2) +
+            Math.cos(lat1 * Math.PI / 180) * Math.cos(lat2 * Math.PI / 180) *
+            Math.sin(dLon / 2) * Math.sin(dLon / 2);
+  const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
+  return R * c; // Distancia en km
+}
+
+// Función para generar las tarjetas de restaurantes ordenados por distancia
+function generarTarjetasRestaurantes(latUsuario, lonUsuario) {
+  const grid = document.getElementById("restaurantGrid");
+  
+  // Convertir objeto a array y calcular distancias
+  const listaRestaurantes = Object.keys(restaurantes).map(id => {
+    const r = restaurantes[id];
+    const dist = calcularDistancia(latUsuario, lonUsuario, r.latitud, r.longitud);
+    return { id, ...r, distancia: dist };
+  });
+
+  // Ordenar de más cercano a lejano
+  listaRestaurantes.sort((a, b) => a.distancia - b.distancia);
+
+  // Generar HTML de las tarjetas
+  grid.innerHTML = listaRestaurantes.map(restaurante => `
+    <div class="card fade-in">
+      <div class="card-image-placeholder">
+        <i class="fas fa-utensils"></i>
+      </div>
+      <div class="card-body">
+        <h3 class="card-title">${restaurante.nombre}</h3>
+        <p class="card-text">${restaurante.resumen}</p>
+        <div class="card-location">
+          <i class="fas fa-map-marker-alt"></i> ${restaurante.ubicacion}
+        </div>
+        <div class="card-distance">
+          <i class="fas fa-location-arrow"></i> <strong>${restaurante.distancia.toFixed(2)} km</strong> de distancia
+        </div>
+        <div class="card-footer">
+          <a href="${restaurante.mapa}" class="btn btn-small btn-primary" target="_blank">Ver en Mapa</a>
+          <a href="${restaurante.reserva}" class="btn btn-small btn-secondary" target="_blank">Reservar</a>
+        </div>
+      </div>
+    </div>
+  `).join('');
 }
 
  function showRestaurantInfo() {
@@ -133,7 +178,10 @@ function selectRestaurantInfo() {
         select.appendChild(option);
       });
 
-      // 4. Mostramos la info del restaurante SELECCIONADO en el HTML
+      // 4. Generamos las tarjetas ordenadas por distancia
+      generarTarjetasRestaurantes(latUsuario, lonUsuario);
+
+      // 5. Mostramos la info del restaurante SELECCIONADO en el HTML
       const data = restaurantes[selected];
       console.log (data);
       console.log (listaRestaurantes);
