@@ -34,10 +34,16 @@
   <!-- HERO BANNER -->
   <section class="hero">
     <div class="hero-content">
+      <div class="hero-logo-badge">
+        <i class="fas fa-music"></i> spotVibe
+      </div>
       <div class="hero-subtitle">Bienvenido a</div>
       <h1>spotVibe</h1>
       <p>Descubre la magia de Guadalajara, la sede más mexicana del <strong>FIFA World Cup 2026</strong></p>
-      <a href="#highlights" class="btn btn-primary btn-large">Explorar más</a>
+      <div class="hero-buttons">
+        <a href="#restaurants" class="btn btn-primary btn-large">Restaurantes Destacados</a>
+        <a href="#highlights" class="btn btn-secondary btn-large">Explorar Más</a>
+      </div>
     </div>
     <div class="scroll-indicator">
       <i class="fas fa-chevron-down"></i>
@@ -77,10 +83,14 @@
     </div>
   </section>
 
-  <!-- FEATURED RESTAURANTS -->
-  <section class="section-gray">
+  <!-- FEATURED RESTAURANTS - MAIN SECTION -->
+  <section class="section-restaurants" id="restaurants">
     <div class="container">
-      <h2 class="section-title">Nuestros Restaurantes Destacados</h2>
+      <div class="section-header-featured">
+        <i class="fas fa-star" style="color: var(--color-primary);"></i>
+        <h2 class="section-title">Restaurantes Destacados</h2>
+        <p class="section-subtitle">Experimenta la gastronomía tapatía en los mejores restaurantes de Guadalajara</p>
+      </div>
       
       <div class="restaurant-grid" id="restaurantGrid">
         <!-- Populated by JavaScript -->
@@ -206,7 +216,6 @@
   </footer>
 
   <!-- SCRIPTS -->
-  <script src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
   <script src="js/restaurantes.js"></script>
   <script>
     // Mobile menu toggle
@@ -221,30 +230,54 @@
       });
     });
 
-    // Populate restaurant grid
+    // Populate restaurant grid with FIFA World Cup 2026 colors
     function displayRestaurants() {
       const restaurantGrid = document.getElementById('restaurantGrid');
-      if (!restaurantGrid || typeof restaurantes === 'undefined' || restaurantes.length === 0) return;
+      if (!restaurantGrid || typeof restaurantes === 'undefined' || Object.keys(restaurantes).length === 0) {
+        console.warn('Restaurant grid or data not found');
+        return;
+      }
       
-      restaurantGrid.innerHTML = restaurantes.map(rest => `
-        <div class="restaurant-card">
-          <div class="restaurant-image" style="background: linear-gradient(135deg, #8CC820, #3A6EC0); display: flex; align-items: center; justify-content: center; color: white; font-size: 40px;">
-            <i class="fas fa-utensils"></i>
-          </div>
-          <div class="restaurant-info">
-            <h3 class="restaurant-name">${rest.nombre}</h3>
-            <div class="restaurant-cuisine">${rest.tipo}</div>
-            <p class="restaurant-description">${rest.descripcion}</p>
-            <div style="font-size: 13px; color: #B1B1B1; margin-bottom: 15px;">
-              <i class="fas fa-map-marker-alt"></i> ${rest.ubicacion}
+      const restaurantList = Object.values(restaurantes);
+      // Official FIFA World Cup 2026 Color Palette
+      const fifaColors = [
+        { primary: '#8CC820', secondary: '#3A6EC0' },  // Lime + Blue
+        { primary: '#E04820', secondary: '#7A1A28' },  // Orange + Maroon
+        { primary: '#3A6EC0', secondary: '#1A2E5A' },  // Blue + Navy
+        { primary: '#C8A028', secondary: '#A87E14' },  // Gold + Dark Gold
+        { primary: '#7A1A28', secondary: '#8CC820' },  // Maroon + Lime
+        { primary: '#1E7832', secondary: '#3A6EC0' },  // Green + Blue
+        { primary: '#E04820', secondary: '#1A2E5A' },  // Orange + Navy
+        { primary: '#C8A028', secondary: '#7A1A28' }   // Gold + Maroon
+      ];
+      
+      restaurantGrid.innerHTML = restaurantList.map((rest, idx) => {
+        const colorCycle = fifaColors[idx % fifaColors.length];
+        return `
+          <div class="restaurant-card fade-in">
+            <div class="restaurant-image" style="background: linear-gradient(135deg, ${colorCycle.primary}, ${colorCycle.secondary}); display: flex; align-items: center; justify-content: center; color: white; font-size: 48px;">
+              <i class="fas fa-utensils"></i>
             </div>
-            <div class="restaurant-actions">
-              <a href="${rest.reserva}" target="_blank" class="btn btn-small btn-primary">Reservar</a>
-              <a href="${rest.sitio}" target="_blank" class="btn btn-small btn-secondary">Visitar</a>
+            <div class="restaurant-info">
+              <div class="restaurant-badge">⭐ Destacado</div>
+              <h3 class="restaurant-name">${rest.nombre}</h3>
+              <div class="restaurant-cuisine">Cocina Mexicana</div>
+              <p class="restaurant-description">${rest.resumen}</p>
+              <div style="font-size: 13px; color: #B1B1B1; margin-bottom: 15px;">
+                <i class="fas fa-map-marker-alt"></i> ${rest.ubicacion}
+              </div>
+              <div class="restaurant-actions">
+                <a href="${rest.mapa}" target="_blank" class="btn btn-small btn-primary">
+                  <i class="fas fa-map"></i> Ver en Mapa
+                </a>
+                <a href="contact.html" class="btn btn-small btn-secondary">
+                  <i class="fas fa-phone"></i> Reservar
+                </a>
+              </div>
             </div>
           </div>
-        </div>
-      `).join('');
+        `;
+      }).join('');
     }
 
     document.addEventListener('DOMContentLoaded', displayRestaurants);
@@ -259,392 +292,6 @@
         }
       });
     });
-
-    // Geolocation
-    if (navigator.geolocation) {
-      navigator.geolocation.getCurrentPosition(
-        (pos) => {
-          console.log(`Ubicación detectada: ${pos.coords.latitude}, ${pos.coords.longitude}`);
-        },
-        (err) => {
-          console.log('Geolocalización no disponible');
-        }
-      );
-    }
   </script>
 </body>
 </html>
-  		<div class="container">
-  			<div class="row">
-  				<div class="col-lg-6 col-md-4 col-sm-3 tm-site-name-container">
-  					<a href="#" class="tm-site-name">spotVibe</a>	
-  				</div>
-	  			<div class="col-lg-6 col-md-8 col-sm-9">
-	  				<div class="mobile-menu-icon">
-		              <i class="fa fa-bars"></i>
-		            </div>
-	  				<nav class="tm-nav">
-						<ul>
-							<li><a href="index.html" class="active">Inicio</a></li>
-							<li><a href="about.html">Acerca de nosotros</a></li>
-							<li><a href="tours.html">Donde nos encuentras</a></li>
-							<li><a href="contact.html">Aviso de privacidad</a></li>
-						</ul>
-					</nav>		
-	  			</div>				
-  			</div>
-  		</div>	  	
-  	</div>
-	
-	<!-- Banner -->
-	<section class="tm-banner">
-		<!-- Flexslider -->
-		<div class="flexslider flexslider-banner">
-		  <ul class="slides">
-		    <li>
-			    <div class="tm-banner-inner">
-					<h1 class="tm-banner-title">spotVibe <span class="tm-yellow-text">conoce Guadalajara </span> conoce la sede</h1>
-					<p class="tm-banner-subtitle">más mexicana</p>
-					<a href="#more" class="tm-banner-link">Más información</a>	
-				</div>
-				<img src="img/banner-1.jpg" alt="Image" />	
-		    </li>
-		    <li>
-			    <div class="tm-banner-inner">
-					<h1 class="tm-banner-title">Los <span class="tm-yellow-text"> monumentos</span> más</h1>
-					<p class="tm-banner-subtitle"> emblemáticos</p>
-					<a href="#more" class="tm-banner-link">Conoce spotVibe</a>	
-				</div>
-		      <img src="img/banner-2.jpg" alt="Image" />
-		    </li>
-		    <li>
-			    <div class="tm-banner-inner">
-					<h1 class="tm-banner-title">Turismo <span class="tm-yellow-text">inclusivo </span> y</h1>
-					<p class="tm-banner-subtitle">pueblos mágicos</p>
-					<a href="#more" class="tm-banner-link">Más información</a>	
-				</div>
-		      <img src="img/banner-3.jpg" alt="Image" />
-		    </li>
-		  </ul>
-		</div>	
-	</section>
-
-	<div role="tabpanel" class="tab-pane fade in active tm-white-bg" id="gastro">
-  <div class="tm-search-box effect2">
-    
-    <div class="tm-form-inner">
-
-      <!-- Selector de restaurante -->
-      <div class="form-group">
-        <select class="form-control" id="restaurantSelect" onchange="showRestaurantInfo()">
-          <option value="">-- Selecciona un restaurante --</option>
-          <option value="alcalde">Alcalde</option>
-          <option value="bruna">Bruna</option>
-          <option value="karne">Karne Garibaldi</option>
-          <option value="chata">La Chata</option>
-          <option value="ilatina">I Latina</option>
-          <option value="tikuun">Tikuun</option>
-          <option value="xokol">Xokol</option>
-        </select>
-      </div>
-
-      <!-- Info dinámica -->
-      <div id="restaurantInfo" style="display:none; margin-top:15px;">
-        <p id="resumen"></p>
-        <p><strong>📍</strong> <span id="ubicacion"></span></p>
-
-        <div class="text-center" style="margin-top:10px;">
-          <a id="btnReserva" target="_blank" class="btn btn-success btn-sm">Reservar</a>
-          <a id="btnInfo" target="_blank" class="btn btn-info btn-sm">Más info</a>
-          <a id="btnMapa" target="_blank" class="btn btn-warning btn-sm">Ubicación</a>
-        </div>
-      </div>
-
-    </div>
-
-  </div>
-</div>
-
-			<div class="col-lg-4 col-md-4 col-sm-6">
-				<div class="tm-home-box-1 tm-home-box-1-2 tm-home-box-1-center">
-					<img src="img/index-01.jpg" alt="image" class="img-responsive">
-					<a href="#">
-						<div class="tm-green-gradient-bg tm-city-price-container">
-							<span>New York</span>
-							<span>$6,600</span>
-						</div>	
-					</a>			
-				</div>				
-			</div>
-			<div class="col-lg-4 col-md-4 col-sm-6">
-				<div class="tm-home-box-1 tm-home-box-1-2 tm-home-box-1-right">
-					<img src="img/index-02.jpg" alt="image" class="img-responsive">
-					<a href="#">
-						<div class="tm-red-gradient-bg tm-city-price-container">
-							<span>Paris</span>
-							<span>$4,200</span>
-						</div>	
-					</a>					
-				</div>				
-			</div>
-		</div>
-	
-		<div class="section-margin-top">
-			<div class="row">				
-				<div class="tm-section-header">
-					<div class="col-lg-3 col-md-3 col-sm-3"><hr></div>
-					<div class="col-lg-6 col-md-6 col-sm-6"><h2 class="tm-section-title">Lorem Ipsum Dolor</h2></div>
-					<div class="col-lg-3 col-md-3 col-sm-3"><hr></div>	
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-lg-3 col-md-3 col-sm-6 col-xs-6 col-xxs-12">
-					<div class="tm-home-box-2">						
-						<img src="img/index-03.jpg" alt="image" class="img-responsive">
-						<h3>Proin Gravida Nibhvel Lorem Quis Bind</h3>
-						<p class="tm-date">28 March 2016</p>
-						<div class="tm-home-box-2-container">
-							<a href="#" class="tm-home-box-2-link"><i class="fa fa-heart tm-home-box-2-icon border-right"></i></a>
-							<a href="#" class="tm-home-box-2-link"><span class="tm-home-box-2-description">Travel</span></a>
-							<a href="#" class="tm-home-box-2-link"><i class="fa fa-edit tm-home-box-2-icon border-left"></i></a>
-						</div>
-					</div>
-				</div>
-				<div class="col-lg-3 col-md-3 col-sm-6 col-xs-6 col-xxs-12">
-					<div class="tm-home-box-2">						
-					    <img src="img/index-04.jpg" alt="image" class="img-responsive">
-						<h3>Proin Gravida Nibhvel Lorem Quis Bind</h3>
-						<p class="tm-date">26 March 2016</p>
-						<div class="tm-home-box-2-container">
-							<a href="#" class="tm-home-box-2-link"><i class="fa fa-heart tm-home-box-2-icon border-right"></i></a>
-							<a href="#" class="tm-home-box-2-link"><span class="tm-home-box-2-description">Travel</span></a>
-							<a href="#" class="tm-home-box-2-link"><i class="fa fa-edit tm-home-box-2-icon border-left"></i></a>
-						</div>
-					</div>
-				</div>
-				<div class="col-lg-3 col-md-3 col-sm-6 col-xs-6 col-xxs-12">
-					<div class="tm-home-box-2">						
-					    <img src="img/index-05.jpg" alt="image" class="img-responsive">
-						<h3>Proin Gravida Nibhvel Lorem Quis Bind</h3>
-						<p class="tm-date">24 March 2016</p>
-						<div class="tm-home-box-2-container">
-							<a href="#" class="tm-home-box-2-link"><i class="fa fa-heart tm-home-box-2-icon border-right"></i></a>
-							<a href="#" class="tm-home-box-2-link"><span class="tm-home-box-2-description">Travel</span></a>
-							<a href="#" class="tm-home-box-2-link"><i class="fa fa-edit tm-home-box-2-icon border-left"></i></a>
-						</div>
-					</div>
-				</div>
-				<div class="col-lg-3 col-md-3 col-sm-6 col-xs-6 col-xxs-12">
-					<div class="tm-home-box-2 tm-home-box-2-right">						
-					    <img src="img/index-06.jpg" alt="image" class="img-responsive">
-						<h3>spotVibe, siente Guadalajara</h3>
-						<p class="tm-date">22 March 2016</p>
-						<div class="tm-home-box-2-container">
-							<a href="#" class="tm-home-box-2-link"><i class="fa fa-heart tm-home-box-2-icon border-right"></i></a>
-							<a href="#" class="tm-home-box-2-link"><span class="tm-home-box-2-description">Travel</span></a>
-							<a href="#" class="tm-home-box-2-link"><i class="fa fa-edit tm-home-box-2-icon border-left"></i></a>
-						</div>
-					</div>
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-lg-12">
-					<p class="home-description">Holiday is free Bootstrap v3.3.5 responsive template for tour and travel websites. You can download and use this layout for any purpose. You do not need to provide a credit link to us. If you have any question, feel free to <a href="http://www.facebook.com/templatemo" target="_parent">contact us</a>. Credit goes to <a rel="nofollow" href="http://unsplash.com" target="_parent">Unspash</a> for images used in this template.</p>					
-				</div>
-			</div>			
-		</div>
-	</section>		
-	
-	<!-- white bg -->
-	<section class="tm-white-bg section-padding-bottom">
-		<div class="container">
-			<div class="row">
-				<div class="tm-section-header section-margin-top">
-					<div class="col-lg-4 col-md-3 col-sm-3"><hr></div>
-					<div class="col-lg-4 col-md-6 col-sm-6"><h2 class="tm-section-title">Popular Packages</h2></div>
-					<div class="col-lg-4 col-md-3 col-sm-3"><hr></div>	
-				</div>
-				<div class="col-lg-6">
-					<div class="tm-home-box-3">
-						<div class="tm-home-box-3-img-container">
-							<img src="img/index-07.jpg" alt="image" class="img-responsive">	
-						</div>						
-						<div class="tm-home-box-3-info">
-							<p class="tm-home-box-3-description">Proin gravida nibhvell velit auctor aliquet. Aenean sollicitudin, lorem quis bibendum auctor, nisi elit consequat ipsum</p>
-					        <div class="tm-home-box-2-container">
-							<a href="#" class="tm-home-box-2-link"><i class="fa fa-heart tm-home-box-2-icon border-right"></i></a>
-							<a href="#" class="tm-home-box-2-link"><span class="tm-home-box-2-description box-3">Travel</span></a>
-							<a href="#" class="tm-home-box-2-link"><i class="fa fa-edit tm-home-box-2-icon border-left"></i></a>
-						</div>
-						</div>						
-					</div>					
-			     </div>
-			     <div class="col-lg-6">
-			        <div class="tm-home-box-3">
-						<div class="tm-home-box-3-img-container">
-							<img src="img/index-08.jpg" alt="image" class="img-responsive">	
-						</div>						
-						<div class="tm-home-box-3-info">
-							<p class="tm-home-box-3-description">Proin gravida nibhvell velit auctor aliquet. Aenean sollicitudin, lorem quis bibendum auctor, nisi elit consequat ipsum</p>
-					        <div class="tm-home-box-2-container">
-							<a href="#" class="tm-home-box-2-link"><i class="fa fa-heart tm-home-box-2-icon border-right"></i></a>
-							<a href="#" class="tm-home-box-2-link"><span class="tm-home-box-2-description box-3">Travel</span></a>
-							<a href="#" class="tm-home-box-2-link"><i class="fa fa-edit tm-home-box-2-icon border-left"></i></a>
-						</div>
-						</div>						
-					</div>
-				</div>
-				<div class="col-lg-6">
-				    <div class="tm-home-box-3">
-						<div class="tm-home-box-3-img-container">
-							<img src="img/index-09.jpg" alt="image" class="img-responsive">	
-						</div>						
-						<div class="tm-home-box-3-info">
-							<p class="tm-home-box-3-description">Proin gravida nibhvell velit auctor aliquet. Aenean sollicitudin, lorem quis bibendum auctor, nisi elit consequat ipsum</p>
-					        <div class="tm-home-box-2-container">
-							<a href="#" class="tm-home-box-2-link"><i class="fa fa-heart tm-home-box-2-icon border-right"></i></a>
-							<a href="#" class="tm-home-box-2-link"><span class="tm-home-box-2-description box-3">Travel</span></a>
-							<a href="#" class="tm-home-box-2-link"><i class="fa fa-edit tm-home-box-2-icon border-left"></i></a>
-						</div>
-						</div>						
-					</div>
-			    </div>
-			    <div class="col-lg-6">
-			        <div class="tm-home-box-3">
-						<div class="tm-home-box-3-img-container">
-							<img src="img/index-10.jpg" alt="image" class="img-responsive">	
-						</div>						
-						<div class="tm-home-box-3-info">
-							<p class="tm-home-box-3-description">Proin gravida nibhvell velit auctor aliquet. Aenean sollicitudin, lorem quis bibendum auctor, nisi elit consequat ipsum</p>
-					        <div class="tm-home-box-2-container">
-							<a href="#" class="tm-home-box-2-link"><i class="fa fa-heart tm-home-box-2-icon border-right"></i></a>
-							<a href="#" class="tm-home-box-2-link"><span class="tm-home-box-2-description box-3">Travel</span></a>
-							<a href="#" class="tm-home-box-2-link"><i class="fa fa-edit tm-home-box-2-icon border-left"></i></a>
-						</div>
-						</div>						
-					</div>
-			   	</div>
-			</div>		
-		</div>
-	</section>
-	<footer class="tm-black-bg">
-		<div class="container">
-			<div class="row">
-				<p class="tm-copyright-text">Copyright &copy; 2084 Your Company Name</p>
-			</div>
-		</div>		
-	</footer>
-	<script type="text/javascript" src="js/jquery-1.11.2.min.js"></script>      		<!-- jQuery -->
-  	<script type="text/javascript" src="js/moment.js"></script>							<!-- moment.js -->
-	<script type="text/javascript" src="js/bootstrap.min.js"></script>					<!-- bootstrap js -->
-	<script type="text/javascript" src="js/bootstrap-datetimepicker.min.js"></script>	<!-- bootstrap date time picker js, http://eonasdan.github.io/bootstrap-datetimepicker/ -->
-	<script type="text/javascript" src="js/jquery.flexslider-min.js"></script>
-<!--
-	<script src="js/froogaloop.js"></script>
-	<script src="js/jquery.fitvid.js"></script>
--->
-   	<script type="text/javascript" src="js/templatemo-script.js"></script>      		<!-- Templatemo Script -->
-	<script>
-		// HTML document is loaded. DOM is ready.
-		$(function() {
-
-			$('#hotelCarTabs a').click(function (e) {
-			  e.preventDefault()
-			  $(this).tab('show')
-			})
-
-        	$('.date').datetimepicker({
-            	format: 'MM/DD/YYYY'
-            });
-            $('.date-time').datetimepicker();
-
-			// https://css-tricks.com/snippets/jquery/smooth-scrolling/
-		  	$('a[href*=#]:not([href=#])').click(function() {
-			    if (location.pathname.replace(/^\//,'') == this.pathname.replace(/^\//,'') && location.hostname == this.hostname) {
-			      var target = $(this.hash);
-			      target = target.length ? target : $('[name=' + this.hash.slice(1) +']');
-			      if (target.length) {
-			        $('html,body').animate({
-			          scrollTop: target.offset().top
-			        }, 1000);
-			        return false;
-			      }
-			    }
-		  	});
-		});
-		
-		// Load Flexslider when everything is loaded.
-		$(window).load(function() {	  		
-			// Vimeo API nonsense
-
-/*
-			  var player = document.getElementById('player_1');
-			  $f(player).addEvent('ready', ready);
-			 
-			  function addEvent(element, eventName, callback) {
-			    if (element.addEventListener) {
-			      element.addEventListener(eventName, callback, false)
-			    } else {
-			      element.attachEvent(eventName, callback, false);
-			    }
-			  }
-			 
-			  function ready(player_id) {
-			    var froogaloop = $f(player_id);
-			    froogaloop.addEvent('play', function(data) {
-			      $('.flexslider').flexslider("pause");
-			    });
-			    froogaloop.addEvent('pause', function(data) {
-			      $('.flexslider').flexslider("play");
-			    });
-			  }
-*/
-
-			 
-			 
-			  // Call fitVid before FlexSlider initializes, so the proper initial height can be retrieved.
-/*
-
-			  $(".flexslider")
-			    .fitVids()
-			    .flexslider({
-			      animation: "slide",
-			      useCSS: false,
-			      animationLoop: false,
-			      smoothHeight: true,
-			      controlNav: false,
-			      before: function(slider){
-			        $f(player).api('pause');
-			      }
-			  });
-*/
-
-
-			  
-
-//	For images only
-		    $('.flexslider').flexslider({
-			    controlNav: false
-		    });
-
-
-	  	});
-	</script>
-	<script src="js/zonaroja.js"></script>
-	<script> navigator.geolocation.getCurrentPosition(
-(pos) => {
-const lat = pos.coords.latitude;
-const lon = pos.coords.longitude;
-console.log(`¡Encontrado! Tu ubicación es:`);
-console.log(`Latitud: ${lat}`);
-console.log(`Longitud: ${lon}`);
-console.log(`Mira tu ubicación en el mapa: https://www.google.com/maps?q=${lat},${lon}`);
-console.log(`Mira tu ubicación en el mapa: https://www.google.com/maps?q=20.6825522,-103.3651568,`);
-  },
-(err) => {
-console.error(`Error (${err.code}): ${err.message}`);
-  }
-); </script>
-	
- </body>
- </html>

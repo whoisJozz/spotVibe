@@ -20,14 +20,16 @@ Se han completado renovaciones completas en **spotVibe**, transformando de un te
 - Imágenes adaptables
 
 ### 3. **Paleta de Colores FIFA World Cup 2026**
-- **Dorado Primario**: #C8A028 (botones, acentos)
-- **Azul Marino**: #1A2E5A (texto principal)
-- **Azul Real**: #3A6EC0 (elementos)
-- **Rojo Vino**: #7A1A28 (acentos oscuros)
-- **Verde Lima**: #8CC820 (éxito, destacados)
-- **Naranja**: #E04820 (advertencias)
-- **Gris Claro**: #EEEAE2 (fondos)
-- **Gris Oscuro**: #0D1520 (header/footer)
+- **Dorado**: #C8A028 (botones, acentos - Trofeo)
+- **Azul Marino**: #1A2E5A (texto principal - Navy)
+- **Azul Real**: #3A6EC0 (elementos secundarios - Blue Royal)
+- **Rojo Vino**: #7A1A28 (acentos oscuros - Maroon)
+- **Verde Lima**: #8CC820 (éxito, destacados - Lime)
+- **Naranja**: #E04820 (advertencias - Warning)
+- **Gris Claro**: #EEEAE2 (fondos claros)
+- **Gris Oscuro**: #0D1520 (header/footer - Dark)
+
+📖 **Ver [COLOR_PALETTE.md](COLOR_PALETTE.md) para referencia completa de colores**
 
 ### 4. **Componentes Principales**
 

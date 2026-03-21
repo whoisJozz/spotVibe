@@ -1,5 +1,14 @@
 /**
  * spotVibe - Animations & Effects
+ * FIFA World Cup 2026 Edition
+ * 
+ * Uses CSS variables from style.css:
+ * --color-primary: #C8A028 (Gold)
+ * --color-secondary: #1A2E5A (Navy)
+ * --color-accent: #7A1A28 (Maroon)
+ * --color-success: #8CC820 (Lime)
+ * --color-warning: #E04820 (Orange)
+ * --color-gray-dark: #0D1520 (Dark)
  * Complementary animations for enhanced visual experience
  */
 
