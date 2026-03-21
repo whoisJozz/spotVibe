@@ -1,164 +1,279 @@
-const zonaroja = {
-  zapopan: {
-    nombre: "Zapopan",
-    resumen: "Zona constaante de robo de vehiculos.",
-    ubicacion: "Vallarta Norte",
-    reserva: "https://www.opentable.com.mx/",
-    info: "https://www.tripadvisor.com.mx/",
-    mapa: "https://www.google.com/maps/search/?api=1&query=Alcalde+Guadalajara",
-    latitud: 20.6825522,
-    longitud: -103.3618782
+// ============================================================
+//  zonaroja.js  –  Módulo de seguridad turística
+//  Principios: mismo ordenamiento por cercanía que restaurantes.js
+//  Extra: alerta automática si el usuario está cerca de una zona roja
+// ============================================================
+
+// ----------------------------------------------------------
+// 1. CATÁLOGO DE ZONAS ROJAS
+//    (coordenadas reales de Guadalajara / Zapopan)
+// ----------------------------------------------------------
+const zonasRojas = {
+  mercado_libertad: {
+    nombre: "Mercado Libertad (San Juan de Dios)",
+    resumen: "Alta incidencia de carteristas y robos a turistas distraídos. Evita mostrar objetos de valor.",
+    ubicacion: "Centro Histórico, Guadalajara",
+    nivelRiesgo: "ALTO",
+    consejo: "Ve en grupo, no saques el celular y usa bolsas cruzadas al frente.",
+    mapa: "https://www.google.com/maps/search/?api=1&query=Mercado+Libertad+Guadalajara",
+    latitud: 20.6698,
+    longitud: -103.3388
   },
-  bruna: {
-    nombre: "Bruna", 
-    resumen: "Cocina mexicana moderna con enfoque creativo y mixología innovadora.",
-    ubicacion: "Lafayette",
-    reserva: "#",
-    info: "#",
-    mapa: "https://www.google.com/maps/search/?api=1&query=Bruna+Guadalajara",
-    latitud: 20.6953102,
-    longitud: -103.4219235
+  centro_nocturno: {
+    nombre: "Centro Histórico (Nocturno)",
+    resumen: "Zona segura de día; de noche aumentan robos en callejones y zonas poco iluminadas.",
+    ubicacion: "Centro Histórico, Guadalajara",
+    nivelRiesgo: "MEDIO",
+    consejo: "Regresa al hotel antes de las 10 pm o usa transporte de app.",
+    mapa: "https://www.google.com/maps/search/?api=1&query=Centro+Historico+Guadalajara",
+    latitud: 20.6737,
+    longitud: -103.3440
   },
-  karne: {
-    nombre: "Karne Garibaldi",
-    resumen: "Famoso por su carne en su jugo. Récord Guinness por servicio rápido.",
-    ubicacion: "Santa Teresita",
-    reserva: "#",
-    info: "#",
-    mapa: "https://www.google.com/maps/search/?api=1&query=Karne+Garibaldi",
-    latitud: 20.6825522,
-    longitud: -103.3618782
+  periferica_norte: {
+    nombre: "Periférica Norte / Zapopan Norte",
+    resumen: "Zona con alta incidencia de robo de vehículos y asaltos en cruceros.",
+    ubicacion: "Zapopan Norte, Jalisco",
+    nivelRiesgo: "ALTO",
+    consejo: "Evita estacionar en la vía pública. No te detengas en cruceros oscuros.",
+    mapa: "https://www.google.com/maps/search/?api=1&query=Periferico+Norte+Zapopan",
+    latitud: 20.7410,
+    longitud: -103.4012
   },
-  chata: {
-    nombre: "La Chata",
-    resumen: "Clásico tapatío desde 1942 con cocina tradicional.",
-    ubicacion: "Centro Histórico",
-    reserva: "#",
-    info: "#",
-    mapa: "https://www.google.com/maps/search/?api=1&query=La+Chata+Guadalajara",
-    latitud: 20.6825522,
-    longitud: -103.3618782
+  tlaquepaque_periferia: {
+    nombre: "Tlaquepaque (Periferia)",
+    resumen: "El centro artesanal es seguro; sus colonias periféricas reportan robos con violencia.",
+    ubicacion: "San Pedro Tlaquepaque, Jalisco",
+    nivelRiesgo: "MEDIO",
+    consejo: "Quédate en la zona turística central y evita callejones poco transitados.",
+    mapa: "https://www.google.com/maps/search/?api=1&query=Tlaquepaque+periferia+Jalisco",
+    latitud: 20.6424,
+    longitud: -103.3122
   },
-  ilatina: {
-    nombre: "I Latina",
-    resumen: "Restaurante hiperkitsch con tacos tropicales y propuestas creativas.",
-    ubicacion: "Vallarta Poniente",
-    reserva: "#",
-    info: "#",
-    mapa: "https://www.google.com/maps/search/?api=1&query=I+Latina+Guadalajara",
-    latitud: 20.6825522,
-    longitud: -103.3618782
-  },
-  tikuun: {
-    nombre: "Tikuun",
-    resumen: "Fusión de cocina mexicana tradicional con técnicas internacionales.",
-    ubicacion: "Colonia Americana",
-    reserva: "#",
-    info: "#",
-    mapa: "https://www.google.com/maps/search/?api=1&query=Tikuun+Guadalajara",
-    latitud: 20.6825522,
-    longitud: -103.3618782
-  },
-  xokol: {
-    nombre: "Xokol",
-    resumen: "Enfocado en maíz criollo y técnicas indígenas.",
-    ubicacion: "Santa Teresita",
-    reserva: "#",
-    info: "#",
-    mapa: "https://www.google.com/maps/search/?api=1&query=Xokol+Guadalajara",
-    latitud: 20.6825522,
-    longitud: -103.3618782
-  },
-  el_tango_patria: {
-    nombre: "El Tango Patria",
-    resumen: "Cocina mexicana moderna con enfoque creativo y mixología innovadora.",
-    ubicacion: "Lafayette",
-    reserva: "#",
-    info: "#",
-    mapa: "https://www.google.com/maps/search/?api=1&query=Bruna+Guadalajara",
-    latitud: 20.6953102,
-    longitud: -103.4219235
-  },
+  santa_cecilia: {
+    nombre: "Santa Cecilia",
+    resumen: "Colonia con reportes frecuentes de pandillerismo y robos a peatones.",
+    ubicacion: "Guadalajara Norte",
+    nivelRiesgo: "ALTO",
+    consejo: "No es zona turística. Si llegas por error, pide un taxi de app de inmediato.",
+    mapa: "https://www.google.com/maps/search/?api=1&query=Santa+Cecilia+Guadalajara",
+    latitud: 20.7053,
+    longitud: -103.3538
+  }
 };
 
-// Función para calcular distancia entre dos puntos
-function calcularDistancia(lat1, lon1, lat2, lon2) {
+// ----------------------------------------------------------
+// 2. CONFIGURACIÓN
+// ----------------------------------------------------------
+// Umbral de alerta en "grados decimales".
+// ~0.009° ≈ 1 km. Ajusta según qué tan sensible quieras la alerta.
+const UMBRAL_ALERTA_KM = 0.018; // ~2 km de radio
+
+// Colores de nivel de riesgo para el badge
+const COLORES_NIVEL = {
+  ALTO:  { bg: "#ff3b30", texto: "#fff" },
+  MEDIO: { bg: "#ff9500", texto: "#fff" },
+  BAJO:  { bg: "#34c759", texto: "#fff" }
+};
+
+// ----------------------------------------------------------
+// 3. UTILIDADES
+// ----------------------------------------------------------
+
+/**
+ * Distancia euclidiana simple (igual que en restaurantes.js).
+ * Para distancias geográficas cortas funciona bien como ranking relativo.
+ */
+function calcularDistanciaZona(lat1, lon1, lat2, lon2) {
   return Math.sqrt(Math.pow(lat2 - lat1, 2) + Math.pow(lon2 - lon1, 2));
 }
 
- function showRestaurantInfo() {
+/**
+ * Convierte distancia en grados a kilómetros aproximados.
+ * 1° ≈ 111 km en latitud.
+ */
+function gradosAKm(distanciaGrados) {
+  return distanciaGrados * 111;
+}
 
-  const selected = document.getElementById("restaurantSelect").value;
-  const data = zonaroja[selected];
- 
+// ----------------------------------------------------------
+// 4. LÓGICA PRINCIPAL – Verificar proximidad y ordenar
+// ----------------------------------------------------------
+
+/**
+ * Calcula distancias a todas las zonas rojas, ordena de más
+ * cercana a más lejana, y dispara alerta si alguna está dentro
+ * del umbral configurado.
+ *
+ * @param {number} latUsuario
+ * @param {number} lonUsuario
+ * @returns {Array} Lista ordenada con campo `distancia` y `distanciaKm`
+ */
+function verificarProximidadZonasRojas(latUsuario, lonUsuario) {
+  // 1. Mapear zonas con su distancia al usuario
+  const listaZonas = Object.keys(zonasRojas).map(id => {
+    const z = zonasRojas[id];
+    const dist = calcularDistanciaZona(latUsuario, lonUsuario, z.latitud, z.longitud);
+    return {
+      id,
+      ...z,
+      distancia: dist,
+      distanciaKm: gradosAKm(dist)
+    };
+  });
+
+  // 2. Ordenar de más cercana a más lejana (igual principio que restaurantes.js)
+  listaZonas.sort((a, b) => a.distancia - b.distancia);
+
+  // 3. Filtrar las que están dentro del umbral de alerta
+  const zonasPeligrosas = listaZonas.filter(z => z.distancia <= UMBRAL_ALERTA_KM);
+
+  // 4. Disparar alerta si hay zonas cercanas
+  if (zonasPeligrosas.length > 0) {
+    const detalles = zonasPeligrosas
+      .map(z =>
+        `⚠️ ${z.nombre}\n` +
+        `   Riesgo: ${z.nivelRiesgo} | ~${z.distanciaKm.toFixed(1)} km\n` +
+        `   Consejo: ${z.consejo}`
+      )
+      .join("\n\n");
+
+    alert(
+      `🚨 ALERTA DE SEGURIDAD TURÍSTICA 🚨\n\n` +
+      `Detectamos que estás cerca de ${zonasPeligrosas.length > 1 ? "zonas con riesgo" : "una zona con riesgo"}:\n\n` +
+      `${detalles}\n\n` +
+      `Mantente alerta y disfruta Guadalajara con seguridad. 🙏`
+    );
+  }
+
+  console.log("📍 Zonas ordenadas por cercanía:", listaZonas);
+  return listaZonas;
+}
+
+// ----------------------------------------------------------
+// 5. FUNCIONES DE UI  (paralelas a restaurantes.js)
+// ----------------------------------------------------------
+
+/**
+ * Muestra info de la zona seleccionada en el select.
+ * Equivalente a showRestaurantInfo() en restaurantes.js.
+ */
+function showZonaRojaInfo() {
+  const selected = document.getElementById("zonaSelect").value;
+  const data = zonasRojas[selected];
+
   if (!data) {
-    document.getElementById("restaurantInfo").style.display = "none";
+    document.getElementById("zonaInfo").style.display = "none";
     return;
   }
- 
-  document.getElementById("restaurantInfo").style.display = "block";
-  document.getElementById("resumen").innerText = data.resumen;
-  document.getElementById("ubicacion").innerText = data.ubicacion;
-  document.getElementById("btnReserva").href = data.reserva;
-  document.getElementById("btnInfo").href = data.info;
-  document.getElementById("btnMapa").href = data.mapa;
+
+  // Badge de nivel de riesgo
+  const badge = document.getElementById("zonaNivelBadge");
+  if (badge) {
+    const colores = COLORES_NIVEL[data.nivelRiesgo] || COLORES_NIVEL.BAJO;
+    badge.textContent = data.nivelRiesgo;
+    badge.style.backgroundColor = colores.bg;
+    badge.style.color = colores.texto;
+  }
+
+  document.getElementById("zonaInfo").style.display = "block";
+  document.getElementById("zonaResumen").innerText  = data.resumen;
+  document.getElementById("zonaUbicacion").innerText = data.ubicacion;
+  document.getElementById("zonaConsejo").innerText   = data.consejo;
+  document.getElementById("btnZonaMapa").href         = data.mapa;
 }
-console.log("Restaurantes cargados:", Object.keys(zonaroja));
 
-function selectRestaurantInfo() {
-  const selected = document.getElementById("restaurantSelect").value;
+/**
+ * Usa geolocalización real, ordena las zonas por cercanía,
+ * puebla el select y verifica si hay alertas activas.
+ * Equivalente a selectRestaurantInfo() en restaurantes.js.
+ */
+function selectZonaRojaInfo() {
+  const selectedAntes = document.getElementById("zonaSelect").value;
 
-  // 1. Pedimos la ubicación
   navigator.geolocation.getCurrentPosition(
     (pos) => {
       const latUsuario = pos.coords.latitude;
       const lonUsuario = pos.coords.longitude;
 
-      // 2. Convertimos el objeto en array y calculamos distancias
-      const listaRestaurantes = Object.keys(zonaroja).map(id => {
-        const r = zonaroja[id];
-        const dist = calcularDistancia(latUsuario, lonUsuario, r.latitud, r.longitud);
-        return { id, ...r, distancia: dist };
-      });
+      // Verificar proximidad y obtener lista ordenada
+      const listaZonas = verificarProximidadZonasRojas(latUsuario, lonUsuario);
 
-      // 3. Ordenamos de más cercano a lejano
-      listaRestaurantes.sort((a, b) => a.distancia - b.distancia);
-      const select = document.getElementById("restaurantSelect");
-      select.innerHTML = '<option value="">Selecciona un lugar cercano...</option>';
-      listaRestaurantes.forEach(lugar => {
+      // Poblar el select ordenado por cercanía
+      const select = document.getElementById("zonaSelect");
+      select.innerHTML = '<option value="">Selecciona una zona de riesgo...</option>';
+
+      listaZonas.forEach(zona => {
         const option = document.createElement("option");
-        option.value = lugar.id;
-        // Mostramos el nombre (ID) capitalizado
-        option.innerText = `${lugar.nombre.toUpperCase()} (Más cercano)`;
+        option.value = zona.id;
+        option.innerText =
+          `${zona.nombre.toUpperCase()} · ${zona.nivelRiesgo} · ~${zona.distanciaKm.toFixed(1)} km`;
         select.appendChild(option);
       });
 
-      // 4. Mostramos la info del restaurante SELECCIONADO en el HTML
-    const data = zonaroja[selected];
-      console.log (data);
-      console.log (listaRestaurantes);
-
+      // Mostrar info de la zona que estaba seleccionada (si aún existe)
+      const data = zonasRojas[selectedAntes];
       if (!data) {
-        document.getElementById("restaurantInfo").style.display = "none";
+        document.getElementById("zonaInfo").style.display = "none";
         return;
       }
 
-      document.getElementById("restaurantInfo").style.display = "block";
-      document.getElementById("resumen").innerText = data.resumen;
-      document.getElementById("ubicacion").innerText = data.ubicacion;
-      document.getElementById("btnReserva").href = data.reserva;
-      document.getElementById("btnInfo").href = data.info;
-      document.getElementById("btnMapa").href = data.mapa;
-
-      // Opcional: Imprimir en consola el orden de cercanía
-      console.log("Ranking de cercanía:", listaRestaurantes);
+      showZonaRojaInfo(); // reutiliza la función de display
     },
     (err) => {
       console.error(`Error de ubicación (${err.code}): ${err.message}`);
-      alert("Por favor activa tu ubicación para ver los datos correctamente.");
+      alert("Por favor activa tu ubicación para recibir alertas de seguridad.");
     }
   );
 }
 
-console.log("Restaurantes cargados:", Object.keys(zonaroja));
-selectRestaurantInfo();
+// ----------------------------------------------------------
+// 6. MODO DEMO  –  ubicación hardcodeada para demostración
+// ----------------------------------------------------------
+
+/**
+ * Simula que el usuario está justo en el Mercado Libertad.
+ * Debe disparar la alerta automáticamente.
+ * Llama a esta función en lugar de selectZonaRojaInfo() para el demo.
+ */
+function demoZonaRoja() {
+  // Coordenadas hardcodeadas: Mercado Libertad, Guadalajara
+  const LAT_DEMO = 20.6698;
+  const LON_DEMO = -103.3388;
+
+  console.log("🔴 MODO DEMO – Simulando usuario en Mercado Libertad");
+  console.log(`   Lat: ${LAT_DEMO}, Lon: ${LON_DEMO}`);
+
+  // Verificar proximidad con coordenadas fijas → dispara alerta
+  const listaZonas = verificarProximidadZonasRojas(LAT_DEMO, LON_DEMO);
+
+  // Poblar el select como si fuera una sesión real
+  const select = document.getElementById("zonaSelect");
+  if (select) {
+    select.innerHTML = '<option value="">📍 DEMO – Zona simulada activa</option>';
+
+    listaZonas.forEach(zona => {
+      const option = document.createElement("option");
+      option.value = zona.id;
+      option.innerText =
+        `${zona.nombre.toUpperCase()} · ${zona.nivelRiesgo} · ~${zona.distanciaKm.toFixed(1)} km`;
+      select.appendChild(option);
+    });
+
+    // Auto-selecciona la más cercana para mostrar su info
+    if (listaZonas.length > 0) {
+      select.value = listaZonas[0].id;
+      showZonaRojaInfo();
+    }
+  }
+}
+
+// ----------------------------------------------------------
+// 7. INICIALIZACIÓN
+// ----------------------------------------------------------
+console.log("🗺️  Zonas rojas cargadas:", Object.keys(zonasRojas));
+
+// ► Para producción (GPS real):
+//   selectZonaRojaInfo();
+
+// ► Para la demostración (coordenada hardcodeada → alerta inmediata):
+demoZonaRoja();
