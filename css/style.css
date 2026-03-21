@@ -19,19 +19,19 @@
    ============================================ */
 
 :root {
-  /* Colors - FIFA World Cup 2026 Official Palette */
-  --color-primary: #C8A028;      /* Gold - Trophy */
-  --color-primary-dark: #A87E14;  /* Gold Darker */
-  --color-secondary: #1A2E5A;     /* Navy - Dark */
-  --color-secondary-light: #3A6EC0; /* Blue - Royal */
-  --color-accent: #7A1A28;        /* Maroon - Red Wine */
-  --color-success: #8CC820;       /* Lime - Green */
-  --color-warning: #E04820;       /* Orange - Warning */
-  --color-gray-dark: #0D1520;     /* Dark - Background */
-  --color-gray-light: #EEEAE2;    /* Light Gray */
-  --color-gray-medium: #B1B1B1;   /* Medium Gray */
-  --color-white: #FFFFFF;         /* White */
-  --color-border: #E4E4E4;        /* Border Gray */
+  /* Colors - Teal / Navy Palette */
+  --color-primary:        #00BFA5;  /* Teal Bright */
+  --color-primary-dark:   #009688;  /* Teal Medium */
+  --color-secondary:      #0D2137;  /* Navy Mid */
+  --color-secondary-light:#1B3A5C;  /* Navy Blue */
+  --color-accent:         #1DE9B6;  /* Mint Vivid */
+  --color-success:        #1DE9B6;  /* Mint / éxito */
+  --color-warning:        #00ACC1;  /* Cyan Warning */
+  --color-gray-dark:      #0A1628;  /* Navy Deep fondo */
+  --color-gray-light:     #E8F4FA;  /* Ice Blue Light */
+  --color-gray-medium:    #7EBCCE;  /* Sky Blue */
+  --color-white:          #FFFFFF;  /* White */
+  --color-border:         #C0DCE8;  /* Border Blue */
   
   /* Typography */
   --font-family: 'Open Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
@@ -258,7 +258,7 @@ p {
 }
 
 .logo::before {
-  content: '♪';
+  /* content: '♪'; */
   font-size: var(--font-size-xl);
   background: linear-gradient(135deg, var(--color-primary), var(--color-warning));
   -webkit-background-clip: text;
