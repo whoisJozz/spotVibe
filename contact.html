@@ -1,5 +1,291 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Contacto - spotVibe | Guadalajara</title>
+  
+  <link href='https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700' rel='stylesheet' type='text/css'>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+  <link href="css/style.css" rel="stylesheet">
+  <link href="css/animations.css" rel="stylesheet">
+</head>
+<body>
+  
+  <!-- HEADER / NAVIGATION -->
+  <header class="header">
+    <div class="container header-container">
+      <a href="index.html" class="logo">spotVibe</a>
+      
+      <button class="mobile-menu-toggle" id="mobileMenuToggle">
+        <i class="fas fa-bars"></i>
+      </button>
+      
+      <nav class="nav" id="mobileMenu">
+        <a href="index.html" class="nav-link">Inicio</a>
+        <a href="about.html" class="nav-link">Acerca de</a>
+        <a href="tours.html" class="nav-link">Donde nos encuentras</a>
+        <a href="contact.html" class="nav-link active">Contacto</a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- HERO BANNER -->
+  <section class="hero">
+    <div class="hero-content">
+      <h1>Contáctanos</h1>
+      <p>Estamos aquí para ayudarte a planificar la mejor experiencia en Guadalajara</p>
+    </div>
+  </section>
+
+  <!-- CONTACT CONTENT -->
+  <section class="section-light">
+    <div class="container">
+      <div class="row">
+        <div class="col-6">
+          <h2>Información de Contacto</h2>
+          
+          <div style="margin-bottom: 40px;">
+            <h4 style="color: #C8A028; margin-bottom: 10px;">
+              <i class="fas fa-phone"></i> Teléfono
+            </h4>
+            <p><a href="tel:+523331234567">+52 (333) 1234-5678</a></p>
+          </div>
+          
+          <div style="margin-bottom: 40px;">
+            <h4 style="color: #C8A028; margin-bottom: 10px;">
+              <i class="fas fa-envelope"></i> Correo Electrónico
+            </h4>
+            <p><a href="mailto:info@spotvibe.mx">info@spotvibe.mx</a></p>
+          </div>
+          
+          <div style="margin-bottom: 40px;">
+            <h4 style="color: #C8A028; margin-bottom: 10px;">
+              <i class="fas fa-map-marker-alt"></i> Ubicación
+            </h4>
+            <p>Centro Histórico de Guadalajara<br>Jalisco, México</p>
+          </div>
+          
+          <div style="margin-bottom: 40px;">
+            <h4 style="color: #C8A028; margin-bottom: 10px;">
+              <i class="fas fa-clock"></i> Horarios
+            </h4>
+            <p>Lunes a Viernes: 9:00 AM - 6:00 PM<br>Sábado: 10:00 AM - 4:00 PM<br>Domingo: Cerrado</p>
+          </div>
+          
+          <div>
+            <h4 style="color: #C8A028; margin-bottom: 15px;">Síguenos en Redes</h4>
+            <div class="social-links">
+              <a href="https://facebook.com" target="_blank" class="social-link"><i class="fab fa-facebook-f"></i></a>
+              <a href="https://twitter.com" target="_blank" class="social-link"><i class="fab fa-twitter"></i></a>
+              <a href="https://instagram.com" target="_blank" class="social-link"><i class="fab fa-instagram"></i></a>
+              <a href="https://whatsapp.com" target="_blank" class="social-link"><i class="fab fa-whatsapp"></i></a>
+            </div>
+          </div>
+        </div>
+        
+        <div class="col-6">
+          <h2>Envíanos un Mensaje</h2>
+          
+          <form id="contactForm" style="background: #f9f9f9; padding: 30px; border-radius: 12px;">
+            <div class="form-group">
+              <label for="name" class="form-label">Nombre</label>
+              <input type="text" id="name" name="name" class="form-control" required>
+            </div>
+            
+            <div class="form-group">
+              <label for="email" class="form-label">Correo Electrónico</label>
+              <input type="email" id="email" name="email" class="form-control" required>
+            </div>
+            
+            <div class="form-group">
+              <label for="phone" class="form-label">Teléfono</label>
+              <input type="tel" id="phone" name="phone" class="form-control">
+            </div>
+            
+            <div class="form-group">
+              <label for="subject" class="form-label">Asunto</label>
+              <select id="subject" name="subject" class="form-control" required>
+                <option value="">-- Selecciona un asunto --</option>
+                <option value="Reserva de tour">Reserva de tour</option>
+                <option value="Reserva de restaurante">Reserva de restaurante</option>
+                <option value="Información general">Información general</option>
+                <option value="Consulta personalizada">Consulta personalizada</option>
+                <option value="Otro">Otro</option>
+              </select>
+            </div>
+            
+            <div class="form-group">
+              <label for="message" class="form-label">Mensaje</label>
+              <textarea id="message" name="message" class="form-control" rows="5" required></textarea>
+            </div>
+            
+            <button type="submit" class="btn btn-primary btn-large" style="width: 100%; text-align: center;">
+              Enviar Mensaje
+            </button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- MAP SECTION -->
+  <section class="section-gray">
+    <div class="container">
+      <h2 class="section-title">Encuéntranos en el Mapa</h2>
+      <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3729.3434893838757!2d-103.27487!3d20.68255!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8428ac382dd327c3%3A0x28d921e5cc39b4e!2sGuadalajara%2C%20Jalisco%2C%20Mexico!5e0!3m2!1sen!2sus!4v1234567890" width="100%" height="400" style="border: none; border-radius: 12px;" allowfullscreen="" loading="lazy"></iframe>
+    </div>
+  </section>
+
+  <!-- FAQS SECTION -->
+  <section class="section-light">
+    <div class="container">
+      <h2 class="section-title">Preguntas Frecuentes</h2>
+      
+      <div style="max-width: 800px; margin: 0 auto;">
+        <div style="margin-bottom: 30px; padding: 20px; background: #f9f9f9; border-radius: 8px;">
+          <h4 style="color: #1A2E5A; margin-bottom: 10px;">
+            <i class="fas fa-question-circle" style="color: #C8A028;"></i> ¿Cuál es el costo de los tours?
+          </h4>
+          <p>Nuestros tours varían de $50 a $150 USD dependiendo de la duración y experiencias incluidas. Contáctanos para ofertas especiales de grupo.</p>
+        </div>
+        
+        <div style="margin-bottom: 30px; padding: 20px; background: #f9f9f9; border-radius: 8px;">
+          <h4 style="color: #1A2E5A; margin-bottom: 10px;">
+            <i class="fas fa-question-circle" style="color: #C8A028;"></i> ¿Cuándo debo reservar?
+          </h4>
+          <p>Recomendamos reservar con al menos 7 días de anticipación. Durante el World Cup 2026, resérva con mayor antelación si es posible.</p>
+        </div>
+        
+        <div style="margin-bottom: 30px; padding: 20px; background: #f9f9f9; border-radius: 8px;">
+          <h4 style="color: #1A2E5A; margin-bottom: 10px;">
+            <i class="fas fa-question-circle" style="color: #C8A028;"></i> ¿Qué incluye la reservación?
+          </h4>
+          <p>La mayoría de tours incluyen guía especializado, transporte y algunas comidas. Lee la descripción de cada tour para detalles específicos.</p>
+        </div>
+        
+        <div style="margin-bottom: 30px; padding: 20px; background: #f9f9f9; border-radius: 8px;">
+          <h4 style="color: #1A2E5A; margin-bottom: 10px;">
+            <i class="fas fa-question-circle" style="color: #C8A028;"></i> ¿Hay tours para niños?
+          </h4>
+          <p>Sí, tenemos tours familiares adaptados. Contáctanos para describir las edades de tus niños y crearemos la experiencia perfecta.</p>
+        </div>
+        
+        <div style="padding: 20px; background: #f9f9f9; border-radius: 8px;">
+          <h4 style="color: #1A2E5A; margin-bottom: 10px;">
+            <i class="fas fa-question-circle" style="color: #C8A028;"></i> ¿Qué idiomas hablan los guías?
+          </h4>
+          <p>Nuestros guías hablan español e inglés. También podemos facilitar guías en otros idiomas con aviso previo.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA SECTION -->
+  <section class="section-dark">
+    <div class="container text-center">
+      <h2>¿Necesitas más información?</h2>
+      <p style="color: rgba(255,255,255,0.8); font-size: 18px; margin-bottom: 30px;">
+        Nuestro equipo está disponible para responder todas tus preguntas
+      </p>
+      <a href="#contactForm" class="btn btn-white btn-large">Ir al formulario</a>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-content">
+        <div class="footer-column">
+          <h4>spotVibe</h4>
+          <p>Tu guía oficial para una experiencia inolvidable en Guadalajara durante el FIFA World Cup 2026.</p>
+          <div class="social-links">
+            <a href="#" class="social-link"><i class="fab fa-facebook-f"></i></a>
+            <a href="#" class="social-link"><i class="fab fa-twitter"></i></a>
+            <a href="#" class="social-link"><i class="fab fa-instagram"></i></a>
+          </div>
+        </div>
+        
+        <div class="footer-column">
+          <h4>Navegación</h4>
+          <ul>
+            <li><a href="index.html">Inicio</a></li>
+            <li><a href="about.html">Acerca de nosotros</a></li>
+            <li><a href="tours.html">Tours y Experiencias</a></li>
+            <li><a href="contact.html">Contacto</a></li>
+          </ul>
+        </div>
+        
+        <div class="footer-column">
+          <h4>Contacto</h4>
+          <ul>
+            <li><i class="fas fa-phone"></i> +52 (333) 1234-5678</li>
+            <li><i class="fas fa-envelope"></i> info@spotvibe.mx</li>
+            <li><i class="fas fa-map-marker-alt"></i> Guadalajara, Jalisco</li>
+          </ul>
+        </div>
+        
+        <div class="footer-column">
+          <h4>Información Legal</h4>
+          <ul>
+            <li><a href="#">Aviso de Privacidad</a></li>
+            <li><a href="#">Términos de Servicio</a></li>
+            <li><a href="#">Política de Cookies</a></li>
+          </ul>
+        </div>
+      </div>
+      
+      <div class="footer-bottom">
+        <p>&copy; 2026 spotVibe - Todos los derechos reservados</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- SCRIPTS -->
+  <script src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
+  <script>
+    // Mobile menu toggle
+    document.getElementById('mobileMenuToggle').addEventListener('click', function() {
+      document.getElementById('mobileMenu').classList.toggle('active');
+    });
+
+    // Close menu when link is clicked
+    document.querySelectorAll('.nav-link').forEach(link => {
+      link.addEventListener('click', function() {
+        document.getElementById('mobileMenu').classList.remove('active');
+      });
+    });
+
+    // Form handling
+    document.getElementById('contactForm').addEventListener('submit', function(e) {
+      e.preventDefault();
+      
+      const name = document.getElementById('name').value;
+      const email = document.getElementById('email').value;
+      const subject = document.getElementById('subject').value;
+      const message = document.getElementById('message').value;
+      
+      // Compose email
+      const mailtoLink = `mailto:info@spotvibe.mx?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(`Nombre: ${name}\nCorreo: ${email}\n\n${message}`)}`;
+      
+      // Open email client
+      window.location.href = mailtoLink;
+    });
+
+    // Smooth scroll for anchor links
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function (e) {
+        const href = this.getAttribute('href');
+        if (href !== '#' && document.querySelector(href)) {
+          e.preventDefault();
+          document.querySelector(href).scrollIntoView({ behavior: 'smooth' });
+        }
+      });
+    });
+  </script>
+</body>
+</html>
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">

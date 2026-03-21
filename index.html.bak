@@ -1,279 +1,32 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="en">
 <head>
-  <meta charset="UTF-8">
+  <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>spotVibe - Guadalajara | FIFA World Cup 2026</title>
-  
-  <link href='https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700' rel='stylesheet' type='text/css'>
-  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
-  <link href="css/style.css" rel="stylesheet">
-  <link href="css/animations.css" rel="stylesheet">
-</head>
-<body>
-  
-  <!-- HEADER / NAVIGATION -->
-  <header class="header">
-    <div class="container header-container">
-      <a href="index.html" class="logo">spotVibe</a>
-      
-      <button class="mobile-menu-toggle" id="mobileMenuToggle">
-        <i class="fas fa-bars"></i>
-      </button>
-      
-      <nav class="nav" id="mobileMenu">
-        <a href="index.html" class="nav-link active">Inicio</a>
-        <a href="about.html" class="nav-link">Acerca de</a>
-        <a href="tours.html" class="nav-link">Donde nos encuentras</a>
-        <a href="contact.html" class="nav-link">Contacto</a>
-      </nav>
-    </div>
-  </header>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>spotVibe</title>
+<!--
+spotVibe · FIFA World Cup 2026 Theme
+http://www.templatemo.com/tm-475-holiday
+-->
+  <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,300,400italic,600,700' rel='stylesheet' type='text/css'>
+  <link href="css/font-awesome.min.css" rel="stylesheet">
+  <link href="css/bootstrap.min.css" rel="stylesheet">
+  <link href="css/bootstrap-datetimepicker.min.css" rel="stylesheet">  
+  <link href="css/flexslider-wc2026.css" rel="stylesheet">
+  <link href="css/templatemo-style-wc2026.css" rel="stylesheet">
 
-  <!-- HERO BANNER -->
-  <section class="hero">
-    <div class="hero-content">
-      <div class="hero-subtitle">Bienvenido a</div>
-      <h1>spotVibe</h1>
-      <p>Descubre la magia de Guadalajara, la sede más mexicana del <strong>FIFA World Cup 2026</strong></p>
-      <a href="#highlights" class="btn btn-primary btn-large">Explorar más</a>
-    </div>
-    <div class="scroll-indicator">
-      <i class="fas fa-chevron-down"></i>
-    </div>
-  </section>
+  <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+  <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+    <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
 
-  <!-- HIGHLIGHTS SECTION -->
-  <section class="section-light" id="highlights">
-    <div class="container">
-      <h2 class="section-title">¿Por qué Guadalajara?</h2>
-      
-      <div class="feature-grid">
-        <div class="feature-item fade-in">
-          <div class="feature-icon">
-            <i class="fas fa-crown"></i>
-          </div>
-          <h3>Tradición Futbolera</h3>
-          <p>Hogar del Guadalajara FC, uno de los equipos más icónicos del fútbol mexicano con rica historia.</p>
-        </div>
-        
-        <div class="feature-item fade-in">
-          <div class="feature-icon">
-            <i class="fas fa-utensils"></i>
-          </div>
-          <h3>Gastronomía Auténtica</h3>
-          <p>Experimenta los sabores únicos de Jalisco con nuestros restaurantes de clase mundial.</p>
-        </div>
-        
-        <div class="feature-item fade-in">
-          <div class="feature-icon">
-            <i class="fas fa-landmark"></i>
-          </div>
-          <h3>Patrimonio Cultural</h3>
-          <p>Monumentos históricos y arquitectura colonial en el corazón del occidente mexicano.</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- FEATURED RESTAURANTS -->
-  <section class="section-gray">
-    <div class="container">
-      <h2 class="section-title">Nuestros Restaurantes Destacados</h2>
-      
-      <div class="restaurant-grid" id="restaurantGrid">
-        <!-- Populated by JavaScript -->
-      </div>
-    </div>
-  </section>
-
-  <!-- EXPERIENCE CARDS -->
-  <section class="section-light">
-    <div class="container">
-      <h2 class="section-title">Experiencias Únicas</h2>
-      
-      <div class="restaurant-grid">
-        <div class="card fade-in">
-          <img src="img/tours-03.jpg" alt="Tours Culturales" class="card-image">
-          <div class="card-body">
-            <h3 class="card-title">Tours Culturales</h3>
-            <p class="card-text">Recorridos guiados por los lugares más emblemáticos de Guadalajara con expertos locales.</p>
-            <div class="card-footer">
-              <span class="text-accent font-bold">Desde $80 USD</span>
-              <a href="#" class="btn btn-small btn-primary">Ver más</a>
-            </div>
-          </div>
-        </div>
-        
-        <div class="card fade-in">
-          <img src="img/tours-04.jpg" alt="Gastronomía" class="card-image">
-          <div class="card-body">
-            <h3 class="card-title">Tours Gastronómicos</h3>
-            <p class="card-text">Degusta la auténtica cocina jalisciense con visitas a mercados tradicionales.</p>
-            <div class="card-footer">
-              <span class="text-accent font-bold">Desde $95 USD</span>
-              <a href="#" class="btn btn-small btn-primary">Ver más</a>
-            </div>
-          </div>
-        </div>
-        
-        <div class="card fade-in">
-          <img src="img/tours-05.jpg" alt="Pueblos Mágicos" class="card-image">
-          <div class="card-body">
-            <h3 class="card-title">Pueblos Mágicos</h3>
-            <p class="card-text">Explora encantadores pueblos cercanos con historia y tradiciones vivas.</p>
-            <div class="card-footer">
-              <span class="text-accent font-bold">Desde $120 USD</span>
-              <a href="#" class="btn btn-small btn-primary">Ver más</a>
-            </div>
-          </div>
-        </div>
-        
-        <div class="card fade-in">
-          <img src="img/tours-06.jpg" alt="Vida Nocturna" class="card-image">
-          <div class="card-body">
-            <h3 class="card-title">Vida Nocturna</h3>
-            <p class="card-text">Disfruta de bares, cantinas y antros en los mejores lugares de la ciudad.</p>
-            <div class="card-footer">
-              <span class="text-accent font-bold">Desde $50 USD</span>
-              <a href="#" class="btn btn-small btn-primary">Ver más</a>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- CTA SECTION -->
-  <section class="section-dark">
-    <div class="container text-center">
-      <h2>¿Listo para tu Aventura?</h2>
-      <p style="color: rgba(255,255,255,0.8); font-size: 18px; margin-bottom: 30px;">
-        Planifica tu viaje a Guadalajara durante el FIFA World Cup 2026
-      </p>
-      <a href="contact.html" class="btn btn-white btn-large">Contacta con nosotros</a>
-    </div>
-  </section>
-
-  <!-- FOOTER -->
-  <footer class="footer">
-    <div class="container">
-      <div class="footer-content">
-        <div class="footer-column">
-          <h4>spotVibe</h4>
-          <p>Tu guía oficial para una experiencia inolvidable en Guadalajara durante el FIFA World Cup 2026.</p>
-          <div class="social-links">
-            <a href="#" class="social-link"><i class="fab fa-facebook-f"></i></a>
-            <a href="#" class="social-link"><i class="fab fa-twitter"></i></a>
-            <a href="#" class="social-link"><i class="fab fa-instagram"></i></a>
-          </div>
-        </div>
-        
-        <div class="footer-column">
-          <h4>Navegación</h4>
-          <ul>
-            <li><a href="index.html">Inicio</a></li>
-            <li><a href="about.html">Acerca de nosotros</a></li>
-            <li><a href="tours.html">Tours y Experiencias</a></li>
-            <li><a href="contact.html">Contacto</a></li>
-          </ul>
-        </div>
-        
-        <div class="footer-column">
-          <h4>Contacto</h4>
-          <ul>
-            <li><i class="fas fa-phone"></i> +52 (333) 1234-5678</li>
-            <li><i class="fas fa-envelope"></i> info@spotvibe.mx</li>
-            <li><i class="fas fa-map-marker-alt"></i> Guadalajara, Jalisco</li>
-          </ul>
-        </div>
-        
-        <div class="footer-column">
-          <h4>Información Legal</h4>
-          <ul>
-            <li><a href="#">Aviso de Privacidad</a></li>
-            <li><a href="#">Términos de Servicio</a></li>
-            <li><a href="#">Política de Cookies</a></li>
-          </ul>
-        </div>
-      </div>
-      
-      <div class="footer-bottom">
-        <p>&copy; 2026 spotVibe - Todos los derechos reservados | Diseño y desarrollo por spotVibe Team</p>
-      </div>
-    </div>
-  </footer>
-
-  <!-- SCRIPTS -->
-  <script src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
-  <script src="js/restaurantes.js"></script>
-  <script>
-    // Mobile menu toggle
-    document.getElementById('mobileMenuToggle').addEventListener('click', function() {
-      document.getElementById('mobileMenu').classList.toggle('active');
-    });
-
-    // Close menu when link is clicked
-    document.querySelectorAll('.nav-link').forEach(link => {
-      link.addEventListener('click', function() {
-        document.getElementById('mobileMenu').classList.remove('active');
-      });
-    });
-
-    // Populate restaurant grid
-    function displayRestaurants() {
-      const restaurantGrid = document.getElementById('restaurantGrid');
-      if (!restaurantGrid || typeof restaurantes === 'undefined' || restaurantes.length === 0) return;
-      
-      restaurantGrid.innerHTML = restaurantes.map(rest => `
-        <div class="restaurant-card">
-          <div class="restaurant-image" style="background: linear-gradient(135deg, #8CC820, #3A6EC0); display: flex; align-items: center; justify-content: center; color: white; font-size: 40px;">
-            <i class="fas fa-utensils"></i>
-          </div>
-          <div class="restaurant-info">
-            <h3 class="restaurant-name">${rest.nombre}</h3>
-            <div class="restaurant-cuisine">${rest.tipo}</div>
-            <p class="restaurant-description">${rest.descripcion}</p>
-            <div style="font-size: 13px; color: #B1B1B1; margin-bottom: 15px;">
-              <i class="fas fa-map-marker-alt"></i> ${rest.ubicacion}
-            </div>
-            <div class="restaurant-actions">
-              <a href="${rest.reserva}" target="_blank" class="btn btn-small btn-primary">Reservar</a>
-              <a href="${rest.sitio}" target="_blank" class="btn btn-small btn-secondary">Visitar</a>
-            </div>
-          </div>
-        </div>
-      `).join('');
-    }
-
-    document.addEventListener('DOMContentLoaded', displayRestaurants);
-
-    // Smooth scroll for anchor links
-    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-      anchor.addEventListener('click', function (e) {
-        const href = this.getAttribute('href');
-        if (href !== '#' && document.querySelector(href)) {
-          e.preventDefault();
-          document.querySelector(href).scrollIntoView({ behavior: 'smooth' });
-        }
-      });
-    });
-
-    // Geolocation
-    if (navigator.geolocation) {
-      navigator.geolocation.getCurrentPosition(
-        (pos) => {
-          console.log(`Ubicación detectada: ${pos.coords.latitude}, ${pos.coords.longitude}`);
-        },
-        (err) => {
-          console.log('Geolocalización no disponible');
-        }
-      );
-    }
-  </script>
-</body>
-</html>
+  </head>
+  <body class="tm-gray-bg">
+  	<!-- Header -->
+  	<div class="tm-header">
   		<div class="container">
   			<div class="row">
   				<div class="col-lg-6 col-md-4 col-sm-3 tm-site-name-container">
