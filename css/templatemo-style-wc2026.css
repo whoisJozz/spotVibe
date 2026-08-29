@@ -29,6 +29,37 @@ a:focus {
 	text-decoration: none;
 }
 
+:root {
+	--color-maroon: #7A1A28;
+	--color-blue: #3A6EC0;
+	--color-navy: #1A2E5A;
+	--color-lime: #8CC820;
+	--color-orange: #E04820;
+	--color-gold: #C8A028;
+	--color-dark: #0D1520;
+	--color-bg: #EEEAE2;
+	--color-muted: #B1B1B1;
+	--radius-sm: 6px;
+	--radius-md: 10px;
+	--space-1: 8px;
+	--space-2: 12px;
+	--space-3: 16px;
+	--space-4: 24px;
+	--space-5: 32px;
+}
+
+body {
+	color: var(--color-navy);
+	background: var(--color-bg);
+	line-height: 1.6;
+}
+
+img {
+	max-width: 100%;
+	height: auto;
+	display: block;
+}
+
 /* Header & Nav */
 body { overflow-x: hidden; }
 .tm-header {
@@ -107,7 +138,7 @@ body { overflow-x: hidden; }
 	font-weight: 600;
 }
 .tm-banner-subtitle { font-size: 34px; }
-.tm-yellow-text { color: #C8A028; }
+.tm-yellow-text { color: var(--color-gold); }
 .tm-banner-link {
 	background: rgba(122, 26, 40, 0.50) none repeat scroll 0% 0%;
 	border: 1px solid #C8A028;
@@ -139,7 +170,7 @@ body { overflow-x: hidden; }
 }
 
 /* Section 1, index.html */
-.tm-gray-bg { background-color: #EEEAE2; }
+.tm-gray-bg { background-color: var(--color-bg); }
 .tm-home-section-1 {
 	position: relative;
 	top: -50px;
@@ -239,8 +270,9 @@ body { overflow-x: hidden; }
 	background-color: #fff;
 }
 .tm-home-box-1 {
-	width: 346px;
-	height: 436px;
+	width: 100%;
+	max-width: 346px;
+	height: auto;
 }
 .tm-home-box-1-center {
 	margin: 0 auto;
@@ -368,14 +400,17 @@ hr { border-top: 1px solid #7A1A28; }
 	margin-bottom: 50px;
 	max-width: 555px;
 	overflow: hidden;
+	display: flex;
+	flex-wrap: wrap;
 }
-.tm-home-box-3-img-container { float: left; }
+.tm-home-box-3-img-container { float: none; flex: 1 1 220px; }
 .tm-home-box-3-info {
-    height: 225px;
-    max-width: 305px;
-    float: right;
-    border: 1px solid #CCC;
+	height: auto;
+	max-width: none;
+	float: none;
+	border: 1px solid #CCC;
 	border-left: none;
+	flex: 1 1 260px;
 }
 .tm-home-box-3-description { padding: 40px 30px 44px; }
 .section-padding-bottom { padding-bottom: 60px; }
@@ -390,11 +425,13 @@ hr { border-top: 1px solid #7A1A28; }
 	background: white;
 	padding: 40px;
 	overflow: hidden;
+	display: flex;
+	flex-wrap: wrap;
 }
 .tm-tours-box-1-info-left,
 .tm-tours-box-1-info-right {
-	float: left;
-	width: 50%;
+	float: none;
+	width: 100%;
 }
 .tm-tours-box-1-info-left {
 	border-right: 1px solid #B1B1B1;
@@ -473,7 +510,7 @@ hr { border-top: 1px solid #7A1A28; }
 .tm-about-box-1 {
 	background-color: white;
 	width: 255px;
-	height: 380px;
+	height: auto;
 	padding: 30px;
 	text-align: center;
 }
@@ -534,13 +571,18 @@ hr { border-top: 1px solid #7A1A28; }
 	max-width: 820px;
 	width: 100%;
 }
-.tm-about-box-2 { overflow: hidden; }
+.tm-about-box-2 {
+	overflow: hidden;
+	display: flex;
+	flex-wrap: wrap;
+	gap: var(--space-4);
+}
 .tm-about-box-2-img,
 .tm-about-box-2-text {
-	float: left;
+	float: none;
 }
 .tm-about-box-2-text {
-	margin-left: 40px;
+	margin-left: 0;
 	max-width: 440px;
 	width: 100%;
 }
@@ -617,7 +659,7 @@ hr { border-top: 1px solid #7A1A28; }
 }
 .contact-image { 
 	float: left; 
-	widthh: 100%;
+	width: 100%;
 	max-width: 494px;
 }
 .contact-text {
@@ -664,13 +706,23 @@ hr { border-top: 1px solid #7A1A28; }
 }
 .contact-social .tm-social-icon:last-child { margin-right: 0; }
 
+@media screen and (min-width: 768px) {
+	.tm-tours-box-1-info-left,
+	.tm-tours-box-1-info-right {
+		width: 50%;
+	}
+	.tm-about-box-2-text {
+		margin-left: 40px;
+	}
+}
+
 @media screen and (max-width: 1199px) {
 	.tm-banner-title { font-size: 50px; }
 	.tm-banner-subtitle { font-size: 30px; }
 	.tm-home-section-1 { top: -20px; }
 	.tm-home-box-1 {
-		width: 300px;
-		height: 388px;
+		max-width: 300px;
+		height: auto;
 	}
 	.hotel-search-form .form-group { margin-bottom: 18px; }
 	.tm-home-box-2-description { padding-bottom: 15px; }
@@ -727,8 +779,8 @@ hr { border-top: 1px solid #7A1A28; }
 @media screen and (max-width: 991px) {
 	.tm-home-box-1 {
 		margin-bottom: 50px;
-		width: 346px;
-		height: 436px;
+		max-width: 346px;
+		height: auto;
 	}
 	.tm-home-box-2 { margin: 0 auto 30px; }
 	.tm-home-box-2-description {
@@ -816,7 +868,7 @@ hr { border-top: 1px solid #7A1A28; }
 	    padding: 6px 15px;
 	    z-index: 1000;
 	}
-	.- { height: 400px;	}
+	.tm-banner { min-height: 360px;	}
 	.tm-banner-title { font-size: 40px;	}
 	.tm-banner-subtitle { font-size: 24px; }
 	.tm-banner-inner { top: 0; }

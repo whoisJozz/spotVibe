@@ -1,403 +1,438 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
-  <meta charset="utf-8">
+  <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>spotVibe</title>
-<!--
-spotVibe · FIFA World Cup 2026 Theme
-http://www.templatemo.com/tm-475-holiday
--->
-  <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,300,400italic,600,700' rel='stylesheet' type='text/css'>
-  <link href="css/font-awesome.min.css" rel="stylesheet">
-  <link href="css/bootstrap.min.css" rel="stylesheet">
-  <link href="css/bootstrap-datetimepicker.min.css" rel="stylesheet">  
-  <link href="css/flexslider-wc2026.css" rel="stylesheet">
-  <link href="css/templatemo-style-wc2026.css" rel="stylesheet">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>spotVibe - Guadalajara | FIFA World Cup 2026</title>
+  
+  <link href='https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700' rel='stylesheet' type='text/css'>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+  <link href="css/style.css" rel="stylesheet">
+  <link href="css/animations.css" rel="stylesheet">
 
-  <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
-  <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-    <!--[if lt IE 9]>
-    <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
-    <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
-    <![endif]-->
+  <style>
+    .section-toggle {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+      margin: 0 auto 32px;
+      background: rgba(255,255,255,0.08);
+      border: 1px solid rgba(255,255,255,0.15);
+      border-radius: 50px;
+      padding: 6px;
+      width: fit-content;
+      flex-wrap: wrap;
+    }
+    .toggle-btn {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      padding: 10px 20px;
+      border-radius: 40px;
+      border: none;
+      cursor: pointer;
+      font-family: 'Open Sans', sans-serif;
+      font-size: 13px;
+      font-weight: 600;
+      letter-spacing: 0.3px;
+      transition: all 0.25s ease;
+      background: transparent;
+      color: rgba(255,255,255,0.55);
+      white-space: nowrap;
+    }
+    .toggle-btn.active { color: #fff; }
+    .toggle-btn.active.btn-rest  { background: var(--color-primary, #8CC820); box-shadow: 0 4px 14px rgba(140,200,32,0.35); }
+    .toggle-btn.active.btn-mon   { background: #C8A028; box-shadow: 0 4px 14px rgba(200,160,40,0.4); }
+    .toggle-btn.active.btn-zona  { background: #C0392B; box-shadow: 0 4px 14px rgba(192,57,43,0.4); }
+    .toggle-btn:hover:not(.active) { color: rgba(255,255,255,0.9); background: rgba(255,255,255,0.1); }
 
-  </head>
-  <body class="tm-gray-bg">
-  	<!-- Header -->
-  	<div class="tm-header">
-  		<div class="container">
-  			<div class="row">
-  				<div class="col-lg-6 col-md-4 col-sm-3 tm-site-name-container">
-  					<a href="#" class="tm-site-name">spotVibe</a>	
-  				</div>
-	  			<div class="col-lg-6 col-md-8 col-sm-9">
-	  				<div class="mobile-menu-icon">
-		              <i class="fa fa-bars"></i>
-		            </div>
-	  				<nav class="tm-nav">
-						<ul>
-							<li><a href="index.html" class="active">Inicio</a></li>
-							<li><a href="about.html">Acerca de nosotros</a></li>
-							<li><a href="tours.html">Donde nos encuentras</a></li>
-							<li><a href="contact.html">Aviso de privacidad</a></li>
-						</ul>
-					</nav>		
-	  			</div>				
-  			</div>
-  		</div>	  	
-  	</div>
-	
-	<!-- Banner -->
-	<section class="tm-banner">
-		<!-- Flexslider -->
-		<div class="flexslider flexslider-banner">
-		  <ul class="slides">
-		    <li>
-			    <div class="tm-banner-inner">
-					<h1 class="tm-banner-title">spotVibe <span class="tm-yellow-text">conoce Guadalajara </span> conoce la sede</h1>
-					<p class="tm-banner-subtitle">más mexicana</p>
-					<a href="#more" class="tm-banner-link">Más información</a>	
-				</div>
-				<img src="img/banner-1.jpg" alt="Image" />	
-		    </li>
-		    <li>
-			    <div class="tm-banner-inner">
-					<h1 class="tm-banner-title">Los <span class="tm-yellow-text"> monumentos</span> más</h1>
-					<p class="tm-banner-subtitle"> emblemáticos</p>
-					<a href="#more" class="tm-banner-link">Conoce spotVibe</a>	
-				</div>
-		      <img src="img/banner-2.jpg" alt="Image" />
-		    </li>
-		    <li>
-			    <div class="tm-banner-inner">
-					<h1 class="tm-banner-title">Turismo <span class="tm-yellow-text">inclusivo </span> y</h1>
-					<p class="tm-banner-subtitle">pueblos mágicos</p>
-					<a href="#more" class="tm-banner-link">Más información</a>	
-				</div>
-		      <img src="img/banner-3.jpg" alt="Image" />
-		    </li>
-		  </ul>
-		</div>	
-	</section>
+    /* Zona roja cards */
+    .zona-card { background:#fff; border-radius:12px; overflow:hidden; box-shadow:0 2px 12px rgba(0,0,0,0.08); transition:transform 0.2s ease,box-shadow 0.2s ease; }
+    .zona-card:hover { transform:translateY(-4px); box-shadow:0 8px 28px rgba(0,0,0,0.14); }
+    .zona-card-banner { height:140px; display:flex; align-items:center; justify-content:center; font-size:40px; color:#fff; position:relative; }
+    .zona-card-banner::after { content:''; position:absolute; inset:0; background:linear-gradient(to bottom,transparent 40%,rgba(0,0,0,0.35)); }
+    .zona-nivel-pill { position:absolute; top:12px; right:12px; font-size:11px; font-weight:700; padding:4px 10px; border-radius:20px; letter-spacing:0.5px; z-index:1; }
+    .nivel-alto  { background:#e74c3c; color:#fff; }
+    .nivel-medio { background:#e67e22; color:#fff; }
+    .nivel-bajo  { background:#27ae60; color:#fff; }
+    .zona-card-body { padding:18px 20px 20px; }
+    .zona-card-nombre { font-size:16px; font-weight:700; color:#1a1a1a; margin-bottom:6px; }
+    .zona-card-resumen { font-size:13px; color:#666; line-height:1.55; margin-bottom:10px; }
+    .zona-card-meta { font-size:12px; color:#999; margin-bottom:8px; display:flex; align-items:flex-start; gap:6px; }
+    .zona-card-meta i { margin-top:2px; flex-shrink:0; }
+    .zona-card-consejo { font-size:12px; color:#7f5a12; background:#fef9ec; border-left:3px solid #f0a500; padding:8px 10px; border-radius:0 6px 6px 0; line-height:1.5; margin-bottom:16px; }
+    .zona-card-footer { display:flex; gap:8px; align-items:center; }
+    .zona-distancia { font-size:13px; color:#C0392B; font-weight:600; display:flex; align-items:center; gap:5px; margin-left:auto; }
 
-	<div role="tabpanel" class="tab-pane fade in active tm-white-bg" id="gastro">
-  <div class="tm-search-box effect2">
-    
-    <div class="tm-form-inner">
+    /* ocultar grids secundarios */
+    #zonaGrid, #monumentoGrid { display: none; }
+  </style>
+</head>
+<body>
 
-      <!-- Selector de restaurante -->
-      <div class="form-group">
-        <select class="form-control" id="restaurantSelect" onchange="showRestaurantInfo()">
-          <option value="">-- Selecciona un restaurante --</option>
-          <option value="alcalde">Alcalde</option>
-          <option value="bruna">Bruna</option>
-          <option value="karne">Karne Garibaldi</option>
-          <option value="chata">La Chata</option>
-          <option value="ilatina">I Latina</option>
-          <option value="tikuun">Tikuun</option>
-          <option value="xokol">Xokol</option>
-        </select>
+  <header class="header">
+    <div class="container header-container">
+      <a href="index.html" class="logo">spotVibe</a>
+      <button class="mobile-menu-toggle" id="mobileMenuToggle"><i class="fas fa-bars"></i></button>
+      <nav class="nav" id="mobileMenu">
+        <a href="index.html" class="nav-link active">Inicio</a>
+        <a href="about.html" class="nav-link">Acerca de</a>
+        <a href="tours.html" class="nav-link">Donde nos encuentras</a>
+        <a href="contact.html" class="nav-link">Contacto</a>
+      </nav>
+    </div>
+  </header>
+
+  <section class="hero">
+    <div class="hero-content">
+      <div class="hero-logo-badge"><i class="fas fa-globe-americas"></i> spotVibe</div>
+      <div class="hero-subtitle">Bienvenido a</div>
+      <h1>spotVibe</h1>
+      <p>Descubre la magia de Guadalajara, la sede más mexicana del <strong>FIFA World Cup 2026</strong></p>
+      <div class="hero-buttons">
+        <a href="#restaurants" class="btn btn-primary btn-large">Restaurantes Destacados</a>
+        <a href="#highlights" class="btn btn-secondary btn-large">Explorar Más</a>
       </div>
+    </div>
+    <div class="scroll-indicator"><i class="fas fa-chevron-down"></i></div>
+  </section>
 
-      <!-- Info dinámica -->
-      <div id="restaurantInfo" style="display:none; margin-top:15px;">
-        <p id="resumen"></p>
-        <p><strong>📍</strong> <span id="ubicacion"></span></p>
-
-        <div class="text-center" style="margin-top:10px;">
-          <a id="btnReserva" target="_blank" class="btn btn-success btn-sm">Reservar</a>
-          <a id="btnInfo" target="_blank" class="btn btn-info btn-sm">Más info</a>
-          <a id="btnMapa" target="_blank" class="btn btn-warning btn-sm">Ubicación</a>
+  <section class="section-light" id="highlights">
+    <div class="container">
+      <h2 class="section-title">¿Por qué Guadalajara?</h2>
+      <div class="feature-grid">
+        <div class="feature-item fade-in">
+          <div class="feature-icon"><i class="fas fa-crown"></i></div>
+          <h3>Tradición Futbolera</h3>
+          <p>Hogar del Guadalajara FC, uno de los equipos más icónicos del fútbol mexicano con rica historia.</p>
+        </div>
+        <div class="feature-item fade-in">
+          <div class="feature-icon"><i class="fas fa-utensils"></i></div>
+          <h3>Gastronomía Auténtica</h3>
+          <p>Experimenta los sabores únicos de Jalisco con nuestros restaurantes de clase mundial.</p>
+        </div>
+        <div class="feature-item fade-in">
+          <div class="feature-icon"><i class="fas fa-landmark"></i></div>
+          <h3>Patrimonio Cultural</h3>
+          <p>Monumentos históricos y arquitectura colonial en el corazón del occidente mexicano.</p>
         </div>
       </div>
-
     </div>
+  </section>
 
-  </div>
-</div>
+  <!-- SECCIÓN PRINCIPAL con 3 vistas -->
+  <section class="section-restaurants" id="restaurants">
+    <div class="container">
+      <div class="section-header-featured">
+        <div class="section-toggle">
+          <button class="toggle-btn btn-rest active" id="btnToggleRest" onclick="cambiarVista('restaurantes')">
+            <i class="fas fa-utensils"></i> Restaurantes
+          </button>
+          <button class="toggle-btn btn-mon" id="btnToggleMon" onclick="cambiarVista('monumentos')">
+            <i class="fas fa-landmark"></i> Monumentos
+          </button>
+          <button class="toggle-btn btn-zona" id="btnToggleZona" onclick="cambiarVista('zonas')">
+            <i class="fas fa-triangle-exclamation"></i> Zonas de Riesgo
+          </button>
+        </div>
+        <p class="section-subtitle" id="sectionSubtitle">
+          Experimenta la gastronomía tapatía en los mejores restaurantes de Guadalajara
+        </p>
+      </div>
 
-			<div class="col-lg-4 col-md-4 col-sm-6">
-				<div class="tm-home-box-1 tm-home-box-1-2 tm-home-box-1-center">
-					<img src="img/index-01.jpg" alt="image" class="img-responsive">
-					<a href="#">
-						<div class="tm-green-gradient-bg tm-city-price-container">
-							<span>New York</span>
-							<span>$6,600</span>
-						</div>	
-					</a>			
-				</div>				
-			</div>
-			<div class="col-lg-4 col-md-4 col-sm-6">
-				<div class="tm-home-box-1 tm-home-box-1-2 tm-home-box-1-right">
-					<img src="img/index-02.jpg" alt="image" class="img-responsive">
-					<a href="#">
-						<div class="tm-red-gradient-bg tm-city-price-container">
-							<span>Paris</span>
-							<span>$4,200</span>
-						</div>	
-					</a>					
-				</div>				
-			</div>
-		</div>
-	
-		<div class="section-margin-top">
-			<div class="row">				
-				<div class="tm-section-header">
-					<div class="col-lg-3 col-md-3 col-sm-3"><hr></div>
-					<div class="col-lg-6 col-md-6 col-sm-6"><h2 class="tm-section-title">Lorem Ipsum Dolor</h2></div>
-					<div class="col-lg-3 col-md-3 col-sm-3"><hr></div>	
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-lg-3 col-md-3 col-sm-6 col-xs-6 col-xxs-12">
-					<div class="tm-home-box-2">						
-						<img src="img/index-03.jpg" alt="image" class="img-responsive">
-						<h3>Proin Gravida Nibhvel Lorem Quis Bind</h3>
-						<p class="tm-date">28 March 2016</p>
-						<div class="tm-home-box-2-container">
-							<a href="#" class="tm-home-box-2-link"><i class="fa fa-heart tm-home-box-2-icon border-right"></i></a>
-							<a href="#" class="tm-home-box-2-link"><span class="tm-home-box-2-description">Travel</span></a>
-							<a href="#" class="tm-home-box-2-link"><i class="fa fa-edit tm-home-box-2-icon border-left"></i></a>
-						</div>
-					</div>
-				</div>
-				<div class="col-lg-3 col-md-3 col-sm-6 col-xs-6 col-xxs-12">
-					<div class="tm-home-box-2">						
-					    <img src="img/index-04.jpg" alt="image" class="img-responsive">
-						<h3>Proin Gravida Nibhvel Lorem Quis Bind</h3>
-						<p class="tm-date">26 March 2016</p>
-						<div class="tm-home-box-2-container">
-							<a href="#" class="tm-home-box-2-link"><i class="fa fa-heart tm-home-box-2-icon border-right"></i></a>
-							<a href="#" class="tm-home-box-2-link"><span class="tm-home-box-2-description">Travel</span></a>
-							<a href="#" class="tm-home-box-2-link"><i class="fa fa-edit tm-home-box-2-icon border-left"></i></a>
-						</div>
-					</div>
-				</div>
-				<div class="col-lg-3 col-md-3 col-sm-6 col-xs-6 col-xxs-12">
-					<div class="tm-home-box-2">						
-					    <img src="img/index-05.jpg" alt="image" class="img-responsive">
-						<h3>Proin Gravida Nibhvel Lorem Quis Bind</h3>
-						<p class="tm-date">24 March 2016</p>
-						<div class="tm-home-box-2-container">
-							<a href="#" class="tm-home-box-2-link"><i class="fa fa-heart tm-home-box-2-icon border-right"></i></a>
-							<a href="#" class="tm-home-box-2-link"><span class="tm-home-box-2-description">Travel</span></a>
-							<a href="#" class="tm-home-box-2-link"><i class="fa fa-edit tm-home-box-2-icon border-left"></i></a>
-						</div>
-					</div>
-				</div>
-				<div class="col-lg-3 col-md-3 col-sm-6 col-xs-6 col-xxs-12">
-					<div class="tm-home-box-2 tm-home-box-2-right">						
-					    <img src="img/index-06.jpg" alt="image" class="img-responsive">
-						<h3>spotVibe, siente Guadalajara</h3>
-						<p class="tm-date">22 March 2016</p>
-						<div class="tm-home-box-2-container">
-							<a href="#" class="tm-home-box-2-link"><i class="fa fa-heart tm-home-box-2-icon border-right"></i></a>
-							<a href="#" class="tm-home-box-2-link"><span class="tm-home-box-2-description">Travel</span></a>
-							<a href="#" class="tm-home-box-2-link"><i class="fa fa-edit tm-home-box-2-icon border-left"></i></a>
-						</div>
-					</div>
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-lg-12">
-					<p class="home-description">Holiday is free Bootstrap v3.3.5 responsive template for tour and travel websites. You can download and use this layout for any purpose. You do not need to provide a credit link to us. If you have any question, feel free to <a href="http://www.facebook.com/templatemo" target="_parent">contact us</a>. Credit goes to <a rel="nofollow" href="http://unsplash.com" target="_parent">Unspash</a> for images used in this template.</p>					
-				</div>
-			</div>			
-		</div>
-	</section>		
-	
-	<!-- white bg -->
-	<section class="tm-white-bg section-padding-bottom">
-		<div class="container">
-			<div class="row">
-				<div class="tm-section-header section-margin-top">
-					<div class="col-lg-4 col-md-3 col-sm-3"><hr></div>
-					<div class="col-lg-4 col-md-6 col-sm-6"><h2 class="tm-section-title">Popular Packages</h2></div>
-					<div class="col-lg-4 col-md-3 col-sm-3"><hr></div>	
-				</div>
-				<div class="col-lg-6">
-					<div class="tm-home-box-3">
-						<div class="tm-home-box-3-img-container">
-							<img src="img/index-07.jpg" alt="image" class="img-responsive">	
-						</div>						
-						<div class="tm-home-box-3-info">
-							<p class="tm-home-box-3-description">Proin gravida nibhvell velit auctor aliquet. Aenean sollicitudin, lorem quis bibendum auctor, nisi elit consequat ipsum</p>
-					        <div class="tm-home-box-2-container">
-							<a href="#" class="tm-home-box-2-link"><i class="fa fa-heart tm-home-box-2-icon border-right"></i></a>
-							<a href="#" class="tm-home-box-2-link"><span class="tm-home-box-2-description box-3">Travel</span></a>
-							<a href="#" class="tm-home-box-2-link"><i class="fa fa-edit tm-home-box-2-icon border-left"></i></a>
-						</div>
-						</div>						
-					</div>					
-			     </div>
-			     <div class="col-lg-6">
-			        <div class="tm-home-box-3">
-						<div class="tm-home-box-3-img-container">
-							<img src="img/index-08.jpg" alt="image" class="img-responsive">	
-						</div>						
-						<div class="tm-home-box-3-info">
-							<p class="tm-home-box-3-description">Proin gravida nibhvell velit auctor aliquet. Aenean sollicitudin, lorem quis bibendum auctor, nisi elit consequat ipsum</p>
-					        <div class="tm-home-box-2-container">
-							<a href="#" class="tm-home-box-2-link"><i class="fa fa-heart tm-home-box-2-icon border-right"></i></a>
-							<a href="#" class="tm-home-box-2-link"><span class="tm-home-box-2-description box-3">Travel</span></a>
-							<a href="#" class="tm-home-box-2-link"><i class="fa fa-edit tm-home-box-2-icon border-left"></i></a>
-						</div>
-						</div>						
-					</div>
-				</div>
-				<div class="col-lg-6">
-				    <div class="tm-home-box-3">
-						<div class="tm-home-box-3-img-container">
-							<img src="img/index-09.jpg" alt="image" class="img-responsive">	
-						</div>						
-						<div class="tm-home-box-3-info">
-							<p class="tm-home-box-3-description">Proin gravida nibhvell velit auctor aliquet. Aenean sollicitudin, lorem quis bibendum auctor, nisi elit consequat ipsum</p>
-					        <div class="tm-home-box-2-container">
-							<a href="#" class="tm-home-box-2-link"><i class="fa fa-heart tm-home-box-2-icon border-right"></i></a>
-							<a href="#" class="tm-home-box-2-link"><span class="tm-home-box-2-description box-3">Travel</span></a>
-							<a href="#" class="tm-home-box-2-link"><i class="fa fa-edit tm-home-box-2-icon border-left"></i></a>
-						</div>
-						</div>						
-					</div>
-			    </div>
-			    <div class="col-lg-6">
-			        <div class="tm-home-box-3">
-						<div class="tm-home-box-3-img-container">
-							<img src="img/index-10.jpg" alt="image" class="img-responsive">	
-						</div>						
-						<div class="tm-home-box-3-info">
-							<p class="tm-home-box-3-description">Proin gravida nibhvell velit auctor aliquet. Aenean sollicitudin, lorem quis bibendum auctor, nisi elit consequat ipsum</p>
-					        <div class="tm-home-box-2-container">
-							<a href="#" class="tm-home-box-2-link"><i class="fa fa-heart tm-home-box-2-icon border-right"></i></a>
-							<a href="#" class="tm-home-box-2-link"><span class="tm-home-box-2-description box-3">Travel</span></a>
-							<a href="#" class="tm-home-box-2-link"><i class="fa fa-edit tm-home-box-2-icon border-left"></i></a>
-						</div>
-						</div>						
-					</div>
-			   	</div>
-			</div>		
-		</div>
-	</section>
-	<footer class="tm-black-bg">
-		<div class="container">
-			<div class="row">
-				<p class="tm-copyright-text">Copyright &copy; 2084 Your Company Name</p>
-			</div>
-		</div>		
-	</footer>
-	<script type="text/javascript" src="js/jquery-1.11.2.min.js"></script>      		<!-- jQuery -->
-  	<script type="text/javascript" src="js/moment.js"></script>							<!-- moment.js -->
-	<script type="text/javascript" src="js/bootstrap.min.js"></script>					<!-- bootstrap js -->
-	<script type="text/javascript" src="js/bootstrap-datetimepicker.min.js"></script>	<!-- bootstrap date time picker js, http://eonasdan.github.io/bootstrap-datetimepicker/ -->
-	<script type="text/javascript" src="js/jquery.flexslider-min.js"></script>
-<!--
-	<script src="js/froogaloop.js"></script>
-	<script src="js/jquery.fitvid.js"></script>
--->
-   	<script type="text/javascript" src="js/templatemo-script.js"></script>      		<!-- Templatemo Script -->
-	<script>
-		// HTML document is loaded. DOM is ready.
-		$(function() {
+      <div class="restaurant-grid" id="restaurantGrid"></div>
+      <div class="restaurant-grid" id="monumentoGrid"></div>
+      <div class="restaurant-grid" id="zonaGrid"></div>
+    </div>
+  </section>
 
-			$('#hotelCarTabs a').click(function (e) {
-			  e.preventDefault()
-			  $(this).tab('show')
-			})
+  <section class="section-light">
+    <div class="container">
+      <h2 class="section-title">Experiencias Únicas</h2>
+      <div class="restaurant-grid">
+        <div class="card fade-in">
+          <img src="img/tours-03.jpg" alt="Tours Culturales" class="card-image">
+          <div class="card-body">
+            <h3 class="card-title">Tours Culturales</h3>
+            <p class="card-text">Recorridos guiados por los lugares más emblemáticos de Guadalajara con expertos locales.</p>
+            <div class="card-footer"><span class="text-accent font-bold">Desde $80 USD</span><a href="#" class="btn btn-small btn-primary">Ver más</a></div>
+          </div>
+        </div>
+        <div class="card fade-in">
+          <img src="img/tours-04.jpg" alt="Gastronomía" class="card-image">
+          <div class="card-body">
+            <h3 class="card-title">Tours Gastronómicos</h3>
+            <p class="card-text">Degusta la auténtica cocina jalisciense con visitas a mercados tradicionales.</p>
+            <div class="card-footer"><span class="text-accent font-bold">Desde $95 USD</span><a href="#" class="btn btn-small btn-primary">Ver más</a></div>
+          </div>
+        </div>
+        <div class="card fade-in">
+          <img src="img/tours-05.jpg" alt="Pueblos Mágicos" class="card-image">
+          <div class="card-body">
+            <h3 class="card-title">Pueblos Mágicos</h3>
+            <p class="card-text">Explora encantadores pueblos cercanos con historia y tradiciones vivas.</p>
+            <div class="card-footer"><span class="text-accent font-bold">Desde $120 USD</span><a href="#" class="btn btn-small btn-primary">Ver más</a></div>
+          </div>
+        </div>
+        <div class="card fade-in">
+          <img src="img/tours-06.jpg" alt="Vida Nocturna" class="card-image">
+          <div class="card-body">
+            <h3 class="card-title">Vida Nocturna</h3>
+            <p class="card-text">Disfruta de bares, cantinas y antros en los mejores lugares de la ciudad.</p>
+            <div class="card-footer"><span class="text-accent font-bold">Desde $50 USD</span><a href="#" class="btn btn-small btn-primary">Ver más</a></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
 
-        	$('.date').datetimepicker({
-            	format: 'MM/DD/YYYY'
-            });
-            $('.date-time').datetimepicker();
+  <section class="section-dark">
+    <div class="container text-center">
+      <h2>¿Listo para tu Aventura?</h2>
+      <p style="color:rgba(255,255,255,0.8);font-size:18px;margin-bottom:30px;">Planifica tu viaje a Guadalajara durante el FIFA World Cup 2026</p>
+      <a href="contact.html" class="btn btn-white btn-large">Contacta con nosotros</a>
+    </div>
+  </section>
 
-			// https://css-tricks.com/snippets/jquery/smooth-scrolling/
-		  	$('a[href*=#]:not([href=#])').click(function() {
-			    if (location.pathname.replace(/^\//,'') == this.pathname.replace(/^\//,'') && location.hostname == this.hostname) {
-			      var target = $(this.hash);
-			      target = target.length ? target : $('[name=' + this.hash.slice(1) +']');
-			      if (target.length) {
-			        $('html,body').animate({
-			          scrollTop: target.offset().top
-			        }, 1000);
-			        return false;
-			      }
-			    }
-		  	});
-		});
-		
-		// Load Flexslider when everything is loaded.
-		$(window).load(function() {	  		
-			// Vimeo API nonsense
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-content">
+        <div class="footer-column">
+          <h4>spotVibe</h4>
+          <p>Tu guía oficial para una experiencia inolvidable en Guadalajara durante el FIFA World Cup 2026.</p>
+          <div class="social-links">
+            <a href="#" class="social-link"><i class="fab fa-facebook-f"></i></a>
+            <a href="#" class="social-link"><i class="fab fa-twitter"></i></a>
+            <a href="#" class="social-link"><i class="fab fa-instagram"></i></a>
+          </div>
+        </div>
+        <div class="footer-column">
+          <h4>Navegación</h4>
+          <ul>
+            <li><a href="index.html">Inicio</a></li>
+            <li><a href="about.html">Acerca de nosotros</a></li>
+            <li><a href="tours.html">Tours y Experiencias</a></li>
+            <li><a href="contact.html">Contacto</a></li>
+          </ul>
+        </div>
+        <div class="footer-column">
+          <h4>Contacto</h4>
+          <ul>
+            <li><i class="fas fa-phone"></i> +52 (333) 1234-5678</li>
+            <li><i class="fas fa-envelope"></i> info@spotvibe.mx</li>
+            <li><i class="fas fa-map-marker-alt"></i> Guadalajara, Jalisco</li>
+          </ul>
+        </div>
+        <div class="footer-column">
+          <h4>Información Legal</h4>
+          <ul>
+            <li><a href="#">Aviso de Privacidad</a></li>
+            <li><a href="#">Términos de Servicio</a></li>
+            <li><a href="#">Política de Cookies</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>&copy; 2026 spotVibe - Todos los derechos reservados | Diseño y desarrollo por spotVibe Team</p>
+      </div>
+    </div>
+  </footer>
 
-/*
-			  var player = document.getElementById('player_1');
-			  $f(player).addEvent('ready', ready);
-			 
-			  function addEvent(element, eventName, callback) {
-			    if (element.addEventListener) {
-			      element.addEventListener(eventName, callback, false)
-			    } else {
-			      element.attachEvent(eventName, callback, false);
-			    }
-			  }
-			 
-			  function ready(player_id) {
-			    var froogaloop = $f(player_id);
-			    froogaloop.addEvent('play', function(data) {
-			      $('.flexslider').flexslider("pause");
-			    });
-			    froogaloop.addEvent('pause', function(data) {
-			      $('.flexslider').flexslider("play");
-			    });
-			  }
-*/
+  <script src="js/restaurantes.js"></script>
+  <script src="js/zonaroja.js"></script>
+  <script src="js/monumentos.js"></script>
 
-			 
-			 
-			  // Call fitVid before FlexSlider initializes, so the proper initial height can be retrieved.
-/*
+  <script>
+    // Mobile menu
+    document.getElementById('mobileMenuToggle').addEventListener('click', function() {
+      document.getElementById('mobileMenu').classList.toggle('active');
+    });
+    document.querySelectorAll('.nav-link').forEach(link => {
+      link.addEventListener('click', () => document.getElementById('mobileMenu').classList.remove('active'));
+    });
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function(e) {
+        const href = this.getAttribute('href');
+        if (href !== '#' && document.querySelector(href)) {
+          e.preventDefault();
+          document.querySelector(href).scrollIntoView({ behavior: 'smooth' });
+        }
+      });
+    });
 
-			  $(".flexslider")
-			    .fitVids()
-			    .flexslider({
-			      animation: "slide",
-			      useCSS: false,
-			      animationLoop: false,
-			      smoothHeight: true,
-			      controlNav: false,
-			      before: function(slider){
-			        $f(player).api('pause');
-			      }
-			  });
-*/
+    // Estado global de geolocalización
+    let userLat = null;
+    let userLon = null;
+    let zonaGridPopulada = false;
+    let monGridPopulado  = false;
 
+    const subtitulos = {
+      restaurantes: 'Experimenta la gastronomía tapatía en los mejores restaurantes de Guadalajara',
+      monumentos:   'Descubre el patrimonio histórico y cultural más icónico de Guadalajara',
+      zonas:        'Conoce las zonas con mayor incidencia delictiva para visitar Guadalajara con precaución'
+    };
 
-			  
+    // ── Cambiar vista ────────────────────────────────────────────
+    function cambiarVista(vista) {
+      const ids = ['restaurantGrid', 'monumentoGrid', 'zonaGrid'];
+      const btnIds = { restaurantes:'btnToggleRest', monumentos:'btnToggleMon', zonas:'btnToggleZona' };
+      const gridIds = { restaurantes:'restaurantGrid', monumentos:'monumentoGrid', zonas:'zonaGrid' };
 
-//	For images only
-		    $('.flexslider').flexslider({
-			    controlNav: false
-		    });
+      // Ocultar todos
+      ids.forEach(id => document.getElementById(id).style.display = 'none');
+      Object.values(btnIds).forEach(id => document.getElementById(id).classList.remove('active'));
 
+      // Mostrar el activo
+      document.getElementById(gridIds[vista]).style.display = 'grid';
+      document.getElementById(btnIds[vista]).classList.add('active');
+      document.getElementById('sectionSubtitle').textContent = subtitulos[vista];
 
-	  	});
-	</script>
-	<script src="js/zonaroja.js"></script>
-	<script> navigator.geolocation.getCurrentPosition(
-(pos) => {
-const lat = pos.coords.latitude;
-const lon = pos.coords.longitude;
-console.log(`¡Encontrado! Tu ubicación es:`);
-console.log(`Latitud: ${lat}`);
-console.log(`Longitud: ${lon}`);
-console.log(`Mira tu ubicación en el mapa: https://www.google.com/maps?q=${lat},${lon}`);
-console.log(`Mira tu ubicación en el mapa: https://www.google.com/maps?q=20.6825522,-103.3651568,`);
-  },
-(err) => {
-console.error(`Error (${err.code}): ${err.message}`);
-  }
-); </script>
-	
- </body>
- </html>
+      // Generar contenido si es primera vez
+      if (vista === 'monumentos' && !monGridPopulado) {
+        userLat !== null
+          ? generarTarjetasMonumentos(userLat, userLon)
+          : generarTarjetasMonumentosSinUbicacion();
+        monGridPopulado = true;
+      }
+      if (vista === 'zonas' && !zonaGridPopulada) {
+        userLat !== null
+          ? generarTarjetasZonas(userLat, userLon)
+          : generarTarjetasZonasSinUbicacion();
+        zonaGridPopulada = true;
+      }
+    }
+
+    // ── Restaurantes ─────────────────────────────────────────────
+    function displayRestaurants() {
+      const grid = document.getElementById('restaurantGrid');
+      if (!grid || typeof restaurantes === 'undefined') return;
+
+      const fifaColors = [
+        {primary:'#8CC820',secondary:'#3A6EC0'},{primary:'#E04820',secondary:'#7A1A28'},
+        {primary:'#3A6EC0',secondary:'#1A2E5A'},{primary:'#C8A028',secondary:'#A87E14'},
+        {primary:'#7A1A28',secondary:'#8CC820'},{primary:'#1E7832',secondary:'#3A6EC0'},
+        {primary:'#E04820',secondary:'#1A2E5A'},{primary:'#C8A028',secondary:'#7A1A28'}
+      ];
+
+      navigator.geolocation.getCurrentPosition(
+        (pos) => {
+          userLat = pos.coords.latitude;
+          userLon = pos.coords.longitude;
+          generarTarjetasRestaurantes(userLat, userLon);
+        },
+        (err) => {
+          console.warn(`Geolocation error (${err.code}): ${err.message}`);
+          grid.innerHTML = Object.values(restaurantes).map((rest, idx) => {
+            const c = fifaColors[idx % fifaColors.length];
+            return `
+              <div class="card fade-in">
+                <div class="card-image-placeholder" style="background:linear-gradient(135deg,${c.primary},${c.secondary});"><i class="fas fa-utensils"></i></div>
+                <div class="card-body">
+                  <h3 class="card-title">${rest.nombre}</h3>
+                  <p class="card-text">${rest.resumen}</p>
+                  <div class="card-location"><i class="fas fa-map-marker-alt"></i> ${rest.ubicacion}</div>
+                  <p style="font-size:12px;color:#E04820;margin-bottom:15px;">Activa tu ubicación para ver la distancia</p>
+                  <div class="card-footer">
+                    <a href="${rest.mapa}" class="btn btn-small btn-primary" target="_blank">Ver en Mapa</a>
+                    <a href="contact.html" class="btn btn-small btn-secondary">Reservar</a>
+                  </div>
+                </div>
+              </div>`;
+          }).join('');
+        }
+      );
+    }
+
+    // ── Zonas rojas ──────────────────────────────────────────────
+    const zonasRojasData = {
+      mercado_libertad: {
+        nombre:"Mercado Libertad", resumen:"Alta incidencia de carteristas y robos a turistas distraídos.",
+        ubicacion:"Centro Histórico, Guadalajara", nivelRiesgo:"ALTO",
+        consejo:"Ve en grupo, no saques el celular y usa bolsas cruzadas al frente.",
+        mapa:"https://www.google.com/maps/search/?api=1&query=Mercado+Libertad+Guadalajara",
+        latitud:20.6698, longitud:-103.3388, colorPrimary:'#922B21', colorSecondary:'#641E16'
+      },
+      centro_nocturno: {
+        nombre:"Centro Histórico (Nocturno)", resumen:"Seguro de día; de noche aumentan robos en callejones poco iluminados.",
+        ubicacion:"Centro Histórico, Guadalajara", nivelRiesgo:"MEDIO",
+        consejo:"Regresa al hotel antes de las 10 pm o usa transporte de app.",
+        mapa:"https://www.google.com/maps/search/?api=1&query=Centro+Historico+Guadalajara",
+        latitud:20.6737, longitud:-103.3440, colorPrimary:'#935116', colorSecondary:'#6E2C00'
+      },
+      periferica_norte: {
+        nombre:"Periférica Norte / Zapopan Norte", resumen:"Alta incidencia de robo de vehículos y asaltos en cruceros.",
+        ubicacion:"Zapopan Norte, Jalisco", nivelRiesgo:"ALTO",
+        consejo:"Evita estacionar en la vía pública. No pares en cruceros oscuros.",
+        mapa:"https://www.google.com/maps/search/?api=1&query=Periferico+Norte+Zapopan",
+        latitud:20.7410, longitud:-103.4012, colorPrimary:'#78281F', colorSecondary:'#4A235A'
+      },
+      tlaquepaque_periferia: {
+        nombre:"Tlaquepaque (Periferia)", resumen:"El centro artesanal es seguro; sus colonias periféricas reportan robos.",
+        ubicacion:"San Pedro Tlaquepaque, Jalisco", nivelRiesgo:"MEDIO",
+        consejo:"Quédate en la zona turística central y evita callejones poco transitados.",
+        mapa:"https://www.google.com/maps/search/?api=1&query=Tlaquepaque+periferia+Jalisco",
+        latitud:20.6424, longitud:-103.3122, colorPrimary:'#7D6608', colorSecondary:'#4D4511'
+      },
+      santa_cecilia: {
+        nombre:"Santa Cecilia", resumen:"Reportes frecuentes de pandillerismo y robos a peatones.",
+        ubicacion:"Guadalajara Norte", nivelRiesgo:"ALTO",
+        consejo:"No es zona turística. Si llegas por error, pide un taxi de app de inmediato.",
+        mapa:"https://www.google.com/maps/search/?api=1&query=Santa+Cecilia+Guadalajara",
+        latitud:20.7053, longitud:-103.3538, colorPrimary:'#512E5F', colorSecondary:'#922B21'
+      }
+    };
+
+    function _zonaCard(zona, distanciaHTML) {
+      const nivelClass = zona.nivelRiesgo==='ALTO'?'nivel-alto':zona.nivelRiesgo==='MEDIO'?'nivel-medio':'nivel-bajo';
+      const iconos = ['fa-triangle-exclamation','fa-shield-halved','fa-circle-exclamation','fa-skull-crossbones','fa-eye-slash'];
+      const idx = Object.keys(zonasRojasData).indexOf(zona.id ?? '');
+      const icono = iconos[Math.max(idx,0) % iconos.length];
+      return `
+        <div class="zona-card fade-in">
+          <div class="zona-card-banner" style="background:linear-gradient(135deg,${zona.colorPrimary},${zona.colorSecondary});">
+            <i class="fas ${icono}" style="font-size:40px;position:relative;z-index:1;"></i>
+            <span class="zona-nivel-pill ${nivelClass}">${zona.nivelRiesgo}</span>
+          </div>
+          <div class="zona-card-body">
+            <h3 class="zona-card-nombre">${zona.nombre}</h3>
+            <p class="zona-card-resumen">${zona.resumen}</p>
+            <div class="zona-card-meta"><i class="fas fa-map-marker-alt" style="color:#c0392b;"></i><span>${zona.ubicacion}</span></div>
+            <div class="zona-card-consejo"><i class="fas fa-lightbulb"></i> ${zona.consejo}</div>
+            <div class="zona-card-footer">
+              <a href="${zona.mapa}" class="btn btn-small btn-primary" target="_blank"><i class="fas fa-map"></i> Ver en mapa</a>
+              ${distanciaHTML}
+            </div>
+          </div>
+        </div>`;
+    }
+
+    function generarTarjetasZonas(latUsuario, lonUsuario) {
+      const lista = Object.entries(zonasRojasData).map(([id, z]) => {
+        const dist = calcularDistancia(latUsuario, lonUsuario, z.latitud, z.longitud);
+        return { id, ...z, distancia: dist };
+      }).sort((a,b) => a.distancia - b.distancia);
+
+      const UMBRAL_KM = 2.0;
+      const cercanas = lista.filter(z => z.distancia <= UMBRAL_KM);
+      if (cercanas.length > 0) {
+        const detalles = cercanas.map(z => `⚠️ ${z.nombre} (${z.nivelRiesgo}) — ${z.distancia.toFixed(2)} km\n   ${z.consejo}`).join('\n\n');
+        alert(`🚨 ALERTA DE SEGURIDAD 🚨\n\nEstás cerca de ${cercanas.length > 1 ? 'zonas con riesgo' : 'una zona con riesgo'}:\n\n${detalles}\n\nMantente alerta y disfruta Guadalajara con precaución. 🙏`);
+      }
+
+      document.getElementById('zonaGrid').innerHTML = lista.map(zona =>
+        _zonaCard(zona, `<span class="zona-distancia"><i class="fas fa-location-arrow"></i> ${zona.distancia.toFixed(2)} km</span>`)
+      ).join('');
+    }
+
+    function generarTarjetasZonasSinUbicacion() {
+      document.getElementById('zonaGrid').innerHTML = Object.entries(zonasRojasData).map(([id, zona]) =>
+        _zonaCard({id,...zona}, `<span style="font-size:12px;color:#e04820;margin-left:auto;">Activa ubicación para ver distancia</span>`)
+      ).join('');
+    }
+
+    document.addEventListener('DOMContentLoaded', displayRestaurants);
+  </script>
+</body>
+</html>
